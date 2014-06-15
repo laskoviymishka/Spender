@@ -8,14 +8,12 @@ namespace Spender.Model.Entities
 {
 	#region Using
 
-	using System.Data.Entity.Spatial;
-
 	#endregion
 
 	public class KnownLocation : IEntity
 	{
 		public string Name { get; set; }
-		public DbGeography Location { get; set; }
+		public string Location { get; set; }
 		public string Id { get; set; }
 	}
 }

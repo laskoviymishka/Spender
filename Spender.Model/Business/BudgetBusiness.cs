@@ -11,7 +11,7 @@ namespace Spender.Model.Business
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using Microsoft.VisualBasic;
+	using Spender.Common.Entities;
 	using Spender.Model.Entities;
 	using Spender.Model.Repository;
 

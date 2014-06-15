@@ -9,7 +9,7 @@ namespace Spender.Model.Business
 	#region Using
 
 	using System.Collections.Generic;
-	using Microsoft.VisualBasic;
+	using Spender.Common.Entities;
 	using Spender.Model.Entities;
 
 	#endregion

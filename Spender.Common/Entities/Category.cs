@@ -4,6 +4,7 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using Spender.Common.Entities;
 namespace Spender.Model.Entities
 {
 	public class Category : IEntity
@@ -11,7 +12,7 @@ namespace Spender.Model.Entities
 		public string Name { get; set; }
 		public string Image { get; set; }
 		public CategoryType Type { get; set; }
-		public ExpenseUser User { get; set; }
+		public IPclUser User { get; set; }
 		public string Id { get; set; }
 	}
 }

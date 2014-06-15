@@ -10,10 +10,11 @@ namespace Spender.Model.Entities
 
 	using System.Collections.Generic;
 	using Microsoft.AspNet.Identity.EntityFramework;
+	using Spender.Common.Entities;
 
 	#endregion
 
-	public class ExpenseUser : IdentityUser, IEntity
+	public class ExpenseUser : IdentityUser, IEntity, IPclUser
 	{
 		public IEnumerable<Category> Categories { get; set; }
 	}

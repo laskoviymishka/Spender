@@ -10,9 +10,9 @@ namespace Spender.Tests.Business
 
 	using System.Collections.Generic;
 	using System.Linq;
-	using Microsoft.VisualBasic;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Moq;
+	using Spender.Common.Entities;
 	using Spender.Model.Business;
 	using Spender.Model.Entities;
 	using Spender.Model.Repository;

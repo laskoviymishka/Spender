@@ -116,6 +116,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spender.Common\Spender.Common.csproj">
+      <Project>{df7da4d6-2beb-4052-83de-4c283bedd484}</Project>
+      <Name>Spender.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spender.Model\Spender.Model.csproj">
       <Project>{a90d45ad-18bd-4f4b-9ff7-d5ef3784a287}</Project>
       <Name>Spender.Model</Name>

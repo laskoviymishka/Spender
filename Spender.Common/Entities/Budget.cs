@@ -1,4 +1,5 @@
-﻿// // -----------------------------------------------------------------------
+﻿using Spender.Common.Entities;
+// // -----------------------------------------------------------------------
 // // <copyright file="Budget.cs"  company="One Call Care Management, Inc.">
 // // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // // </copyright>
@@ -9,7 +10,7 @@ namespace Spender.Model.Entities
 	#region Using
 
 	using System;
-	using Microsoft.VisualBasic;
+	using Spender.Common.Entities;
 
 	#endregion
 
@@ -17,7 +18,7 @@ namespace Spender.Model.Entities
 	{
 		private DateInterval _interval = DateInterval.Month;
 
-		public ExpenseUser User { get; set; }
+		public IPclUser User { get; set; }
 		public Category Category { get; set; }
 		public decimal Value { get; set; }
 

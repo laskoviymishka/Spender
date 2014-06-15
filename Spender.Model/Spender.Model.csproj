@@ -61,21 +61,17 @@
     <Compile Include="Business\IncomeBusiness.cs" />
     <Compile Include="Business\IUserBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
-    <Compile Include="Entities\BasePayment.cs" />
-    <Compile Include="Entities\Bill.cs" />
-    <Compile Include="Entities\CategoryType.cs" />
-    <Compile Include="Entities\IEntity.cs" />
-    <Compile Include="Entities\Income.cs" />
-    <Compile Include="Entities\Expense.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\ExpenseUser.cs" />
-    <Compile Include="Entities\KnownLocation.cs" />
-    <Compile Include="Entities\Budget.cs" />
+    <Compile Include="ExpenseUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EfRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Spender.Common\Spender.Common.csproj">
+      <Project>{df7da4d6-2beb-4052-83de-4c283bedd484}</Project>
+      <Name>Spender.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
