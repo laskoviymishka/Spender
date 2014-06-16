@@ -61,6 +61,27 @@
                         <telerikInput:DataField Header="Number Field:" TargetProperty="Amount">
                             <telerikInput:RadNumericUpDown x:Name="radNumericUpDown" VerticalAlignment="Center" InitialRepeatInterval="500" RepeatIntervalDecrementStep="50" MinimumRepeatInterval="100" />
                         </telerikInput:DataField>
+                        <StackPanel Orientation="Vertical" Grid.Row="5" Margin="2, 2,2,2">
+                            <Grid HorizontalAlignment="Center">
+                                <Ellipse Width="78" 
+                             Height="78"
+                             x:Name="btnNewPhoto" 
+                             Tap="btnNewPhoto_Tap" 
+                             Fill="#259DA0" 
+                             HorizontalAlignment="Center"/>
+                                <Rectangle HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center"
+                                   Height="6"
+                                   Width="34"
+                                   Fill="{StaticResource PhoneBackgroundBrush}"/>
+                                <Rectangle HorizontalAlignment="Center"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{StaticResource PhoneBackgroundBrush}"
+                                   Width="6"
+                                   Height="34"/>
+                            </Grid>
+                            <TextBlock Text="CHOOSE CHECK" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="#259DA0" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Grid>
                 </telerikInput:RadDataForm>
             </ScrollViewer>

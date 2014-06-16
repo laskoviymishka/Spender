@@ -25,5 +25,10 @@ namespace Spender.WinPhone.Views
 		{
 			this.DataForm.Commit();
 		}
+
+		private void btnNewPhoto_Tap(object sender, GestureEventArgs e)
+		{
+
+		}
 	}
 }
