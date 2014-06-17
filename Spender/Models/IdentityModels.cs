@@ -4,13 +4,15 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Spender.Model.Entities;
+
 namespace Spender.Models
 {
 	#region Using
 
-	using System.Data.Entity;
-	using Microsoft.AspNet.Identity.EntityFramework;
-	using Spender.Model.Entities;
+	
 
 	#endregion
 

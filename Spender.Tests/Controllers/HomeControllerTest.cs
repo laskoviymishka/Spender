@@ -4,13 +4,15 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Spender.Controllers;
+
 namespace Spender.Tests.Controllers
 {
 	#region Using
 
-	using System.Web.Mvc;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Spender.Controllers;
+	
 
 	#endregion
 

@@ -4,15 +4,17 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
+using System.Web.Http;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System.IO;
-	using System.Net.Http;
-	using System.Net.Http.Headers;
-	using System.Web;
-	using System.Web.Http;
+	
 
 	#endregion
 
@@ -24,7 +26,7 @@ namespace Spender.Controllers
 		{
 			var response = new HttpResponseMessage();
 			string root = HttpContext.Current.Server.MapPath("~/App_Data");
-			var filePath = root + "/" + imageId;
+			string filePath = root + "/" + imageId;
 			if (File.Exists(filePath))
 			{
 				response.Content = new StreamContent(File.Open(filePath, FileMode.Open));

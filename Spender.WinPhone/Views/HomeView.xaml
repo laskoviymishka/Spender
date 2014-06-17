@@ -6,9 +6,9 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
-                             xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
-    xmlns:telerikDataForm="clr-namespace:Telerik.Windows.Controls.DataForm;assembly=Telerik.Windows.Controls.Input"
-    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                            xmlns:telerikDataForm="clr-namespace:Telerik.Windows.Controls.DataForm;assembly=Telerik.Windows.Controls.Input"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -59,9 +59,8 @@
 
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-        </StackPanel>
+                    Grid.Row="1"
+                    Margin="12,0,12,0" />
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to

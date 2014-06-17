@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Spender.WinPhone.Model
+﻿namespace Spender.WinPhone.Model
 {
 	public class DataItem
 	{
@@ -12,10 +7,6 @@ namespace Spender.WinPhone.Model
 			Title = title;
 		}
 
-		public string Title
-		{
-			get;
-			private set;
-		}
+		public string Title { get; private set; }
 	}
 }

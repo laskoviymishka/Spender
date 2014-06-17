@@ -4,16 +4,18 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Model.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Data.Entity;
-	using System.Linq;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -44,7 +46,8 @@ namespace Spender.Model.Business
 
 		public IEnumerable<Bill> GetBills(ExpenseUser user, Category category)
 		{
-			return _billRepository.Query().Include(b => b.Category).Where(b => b.User.Id == user.Id && b.Category.Id == category.Id);
+			return
+				_billRepository.Query().Include(b => b.Category).Where(b => b.User.Id == user.Id && b.Category.Id == category.Id);
 		}
 
 		public IEnumerable<Bill> GetBills(ExpenseUser user, DateTime deadline)
@@ -55,14 +58,16 @@ namespace Spender.Model.Business
 		public IEnumerable<Bill> GetBills(ExpenseUser user, Category category, DateTime deadline)
 		{
 			return
-				_billRepository.Query().Include(b => b.Category).Where(b => b.User.Id == user.Id && b.Deadline >= deadline && b.Category.Id == category.Id);
+				_billRepository.Query()
+					.Include(b => b.Category)
+					.Where(b => b.User.Id == user.Id && b.Deadline >= deadline && b.Category.Id == category.Id);
 		}
 
 		public void PayBill(Bill bill)
 		{
-			if (!string.IsNullOrEmpty(bill.Id) 
-				&& GetBillById(bill.Id) != null 
-				&& GetBillById(bill.Id).ReccuringInterval == Interval.None)
+			if (!string.IsNullOrEmpty(bill.Id)
+			    && GetBillById(bill.Id) != null
+			    && GetBillById(bill.Id).ReccuringInterval == Interval.None)
 			{
 				_billRepository.Remove(bill);
 			}
@@ -78,7 +83,7 @@ namespace Spender.Model.Business
 
 		public void PayBill(IEnumerable<Bill> bills)
 		{
-			foreach (var bill in bills)
+			foreach (Bill bill in bills)
 			{
 				PayBill(bill);
 			}
@@ -91,7 +96,7 @@ namespace Spender.Model.Business
 
 		public void AddBill(IEnumerable<Bill> bills)
 		{
-			foreach (var bill in bills)
+			foreach (Bill bill in bills)
 			{
 				AddBill(bill);
 			}

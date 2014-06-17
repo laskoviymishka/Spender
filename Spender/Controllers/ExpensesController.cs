@@ -4,23 +4,25 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+using Spender.Models;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Net;
-	using System.Net.Http;
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Web.Http;
-	using Microsoft.AspNet.Identity;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-	using Spender.Models;
+	
 
 	#endregion
 
@@ -52,7 +54,7 @@ namespace Spender.Controllers
 		[Route("api/Expenses/GetExpenses")]
 		public IEnumerable<Expense> GetExpenses()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _expenseBusiness.GetExpenses(user);
 		}
 
@@ -60,8 +62,8 @@ namespace Spender.Controllers
 		[Route("api/Expenses/GetExpensesForCategory/{categoryId}")]
 		public IEnumerable<Expense> GetExpenses(string categoryId)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = _categoryBusiness.GetCategoryById(categoryId);
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			Category category = _categoryBusiness.GetCategoryById(categoryId);
 			return _expenseBusiness.GetExpenses(user, category);
 		}
 
@@ -69,8 +71,8 @@ namespace Spender.Controllers
 		[Route("api/Expenses/GetExpensesForCategoryAndTime/{categoryId}&{startTime}&{endTime}")]
 		public IEnumerable<Expense> GetExpenses(string categoryId, string startTime, string endTime)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = _categoryBusiness.GetCategoryById(categoryId);
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			Category category = _categoryBusiness.GetCategoryById(categoryId);
 			return _expenseBusiness.GetExpenses(user, category, DateTime.Parse(startTime), DateTime.Parse(endTime));
 		}
 
@@ -78,7 +80,7 @@ namespace Spender.Controllers
 		[Route("api/Expenses/GetExpensesById/{id}")]
 		public Expense GetExpense(string id)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _expenseBusiness.GetExpenseById(user, id);
 		}
 
@@ -96,8 +98,8 @@ namespace Spender.Controllers
 			var provider = new MultipartFormDataStreamProvider(root);
 			try
 			{
-				var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-				var expense = new Expense()
+				var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+				var expense = new Expense
 				{
 					Id = Guid.NewGuid().ToString(),
 					Name = name,

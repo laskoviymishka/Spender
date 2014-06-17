@@ -4,20 +4,25 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+using Spender.Models;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Web.Mvc;
-	using Microsoft.AspNet.Identity;
-	using Microsoft.AspNet.Identity.EntityFramework;
-	using Microsoft.Owin.Security;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-	using Spender.Models;
+	
 
 	#endregion
 
@@ -35,11 +40,12 @@ namespace Spender.Controllers
 		{
 			var appcontext = new ApplicationDbContext();
 			UserManager = new UserManager<ExpenseUser>(new UserStore<ExpenseUser>(appcontext));
-			_categoryBusiness = new CategoryBusiness(new EfRepository<Category>(appcontext,appcontext.Categories));
+			_categoryBusiness = new CategoryBusiness(new EfRepository<Category>(appcontext, appcontext.Categories));
 			_userBusiness = new UserBusiness(new EfRepository<ExpenseUser>(appcontext, appcontext.Users));
 		}
 
-		public AccountController(UserManager<ExpenseUser> userManager, IUserBusiness userBusiness, ICategoryBusiness categoryBusiness)
+		public AccountController(UserManager<ExpenseUser> userManager, IUserBusiness userBusiness,
+			ICategoryBusiness categoryBusiness)
 		{
 			UserManager = userManager;
 			_userBusiness = userBusiness;
@@ -66,7 +72,7 @@ namespace Spender.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = await UserManager.FindAsync(model.UserName, model.Password);
+				ExpenseUser user = await UserManager.FindAsync(model.UserName, model.Password);
 				if (user != null)
 				{
 					await SignInAsync(user, model.RememberMe);
@@ -97,7 +103,7 @@ namespace Spender.Controllers
 			if (ModelState.IsValid)
 			{
 				var user = new ExpenseUser {UserName = model.UserName};
-				var result = await UserManager.CreateAsync(user, model.Password);
+				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
 					await SignInAsync(user, false);
@@ -212,14 +218,14 @@ namespace Spender.Controllers
 		[AllowAnonymous]
 		public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
 		{
-			var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+			ExternalLoginInfo loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 			if (loginInfo == null)
 			{
 				return RedirectToAction("Login");
 			}
 
 			// Sign in the user with this external login provider if the user already has a login
-			var user = await UserManager.FindAsync(loginInfo.Login);
+			ExpenseUser user = await UserManager.FindAsync(loginInfo.Login);
 			if (user != null)
 			{
 				await SignInAsync(user, false);
@@ -246,12 +252,13 @@ namespace Spender.Controllers
 		// GET: /Account/LinkLoginCallback
 		public async Task<ActionResult> LinkLoginCallback()
 		{
-			var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+			ExternalLoginInfo loginInfo =
+				await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
 			if (loginInfo == null)
 			{
 				return RedirectToAction("Manage", new {Message = ManageMessageId.Error});
 			}
-			var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+			IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
 			if (result.Succeeded)
 			{
 				return RedirectToAction("Manage");
@@ -274,13 +281,13 @@ namespace Spender.Controllers
 			if (ModelState.IsValid)
 			{
 				// Get the information about the user from the external login provider
-				var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+				ExternalLoginInfo info = await AuthenticationManager.GetExternalLoginInfoAsync();
 				if (info == null)
 				{
 					return View("ExternalLoginFailure");
 				}
 				var user = new ExpenseUser {UserName = model.UserName};
-				var result = await UserManager.CreateAsync(user);
+				IdentityResult result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{
 					result = await UserManager.AddLoginAsync(user.Id, info.Login);
@@ -318,7 +325,7 @@ namespace Spender.Controllers
 		[ChildActionOnly]
 		public ActionResult RemoveAccountList()
 		{
-			var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
+			IList<UserLoginInfo> linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
 			ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
 			return PartialView("_RemoveAccountPartial", linkedAccounts);
 		}
@@ -354,13 +361,13 @@ namespace Spender.Controllers
 		private async Task SignInAsync(ExpenseUser user, bool isPersistent)
 		{
 			AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-			var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+			ClaimsIdentity identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 			AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
 		}
 
 		private void AddErrors(IdentityResult result)
 		{
-			foreach (var error in result.Errors)
+			foreach (string error in result.Errors)
 			{
 				ModelState.AddModelError("", error);
 			}
@@ -368,7 +375,7 @@ namespace Spender.Controllers
 
 		private bool HasPassword()
 		{
-			var user = UserManager.FindById(User.Identity.GetUserId());
+			ExpenseUser user = UserManager.FindById(User.Identity.GetUserId());
 			if (user != null)
 			{
 				return user.PasswordHash != null;

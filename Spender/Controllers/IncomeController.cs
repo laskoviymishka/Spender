@@ -4,23 +4,25 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+using Spender.Models;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Net;
-	using System.Net.Http;
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Web.Http;
-	using Microsoft.AspNet.Identity;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-	using Spender.Models;
+	
 
 	#endregion
 
@@ -55,27 +57,27 @@ namespace Spender.Controllers
 		[Route("api/Income/GetIncomes")]
 		public IEnumerable<Income> GetIncomes()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _incomeBusiness.GetIncomes(user);
 		}
 
 		public IEnumerable<Income> GetIncomes(string categoryId)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = _categoryBusiness.GetCategoryById(categoryId);
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			Category category = _categoryBusiness.GetCategoryById(categoryId);
 			return _incomeBusiness.GetIncomes(user, category);
 		}
 
 		public IEnumerable<Income> GetIncomes(string categoryId, string startTime, string endTime)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = _categoryBusiness.GetCategoryById(categoryId);
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			Category category = _categoryBusiness.GetCategoryById(categoryId);
 			return _incomeBusiness.GetIncomes(user, category, DateTime.Parse(startTime), DateTime.Parse(endTime));
 		}
 
 		public Income GetIncome(string id)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _incomeBusiness.GetIncomeById(user, id);
 		}
 
@@ -94,7 +96,7 @@ namespace Spender.Controllers
 			var provider = new MultipartFormDataStreamProvider(root);
 			try
 			{
-				var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+				var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 				var expense = new Income
 				{
 					Id = Guid.NewGuid().ToString(),
@@ -112,7 +114,9 @@ namespace Spender.Controllers
 					var info = new FileInfo(provider.FileData[0].LocalFileName);
 					expense.Image = info.Name;
 				}
-				catch { }
+				catch
+				{
+				}
 
 				_incomeBusiness.AddIncome(expense);
 				return Request.CreateResponse(HttpStatusCode.OK);

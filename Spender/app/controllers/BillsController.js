@@ -1,14 +1,14 @@
-﻿BillsController = function ($scope, $http, $modal, broadcasterService) {
+﻿BillsController = function($scope, $http, $modal, broadcasterService) {
     var getBillsUri = 'api/Bills/getAll';
 
-    $scope.init = function () {
-        $http.get(getBillsUri).success(function (result) {
+    $scope.init = function() {
+        $http.get(getBillsUri).success(function(result) {
             $scope.bills = result;
             console.log("init bill cat", result);
         }).error(broadcasterService.error);
     };
 
-    $scope.addBill = function () {
+    $scope.addBill = function() {
         $modal.open({
             templateUrl: 'MyInfo/AddBill',
             controller: addBillModalCntl,
@@ -16,7 +16,7 @@
         });
     };
 
-    $scope.$on('billModalInstanceClosed', function () {
+    $scope.$on('billModalInstanceClosed', function() {
         $http.get(getBillsUri).success(function(result) {
             $scope.bills = result;
         }).error(broadcasterService.error);
@@ -24,12 +24,12 @@
 };
 
 
-addBillModalCntl = function ($scope, $http, $modalInstance, $upload, broadcasterService) {
+addBillModalCntl = function($scope, $http, $modalInstance, $upload, broadcasterService) {
     $scope.model = {};
     var getCategories = 'api/Categories/GetExpenseCategories';
     var getReccuring = 'api/Bills/GetReccuring';
 
-    $http.get(getReccuring).success(function (reccuring) {
+    $http.get(getReccuring).success(function(reccuring) {
         $scope.reccuring = [];
         for (var i = 0; i < reccuring.length; i++) {
             $scope.reccuring[i] = { id: i, name: reccuring[i] };
@@ -37,17 +37,17 @@ addBillModalCntl = function ($scope, $http, $modalInstance, $upload, broadcaster
         console.log("init bill", reccuring);
     }).error(broadcasterService.error);
 
-    $http.get(getCategories).success(function (categries) {
+    $http.get(getCategories).success(function(categries) {
         $scope.categories = categries;
         console.log("init bill", categries);
     }).error(broadcasterService.error);
 
 
-    $scope.onFileSelect = function ($files) {
+    $scope.onFileSelect = function($files) {
         $scope.file = $files[0];
     };
 
-    $scope.save = function () {
+    $scope.save = function() {
         var file = $scope.file;
         var uriTemplate = 'api/Bills/PostFormData/{name}&={note}&={categoryId}&={amount}&={deadline}&={reccuring}';
         var uriPost = uriTemplate.replace('{name}', $scope.model.Name)
@@ -60,11 +60,11 @@ addBillModalCntl = function ($scope, $http, $modalInstance, $upload, broadcaster
         $scope.upload = $upload.upload({
             url: uriPost,
             file: file
-        }).progress(function (evt) {
+        }).progress(function(evt) {
             console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             console.log(data, status, headers, config);
-        }).then(function () {
+        }).then(function() {
             $modalInstance.close();
             broadcasterService.broadcast({
                 event: 'billModalInstanceClosed',
@@ -73,7 +73,7 @@ addBillModalCntl = function ($scope, $http, $modalInstance, $upload, broadcaster
         });
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
 };

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Spender.WinPhone.ViewModels;
 using Telerik.Windows.Controls;
 
@@ -11,75 +6,63 @@ namespace Spender.WinPhone.ViewModel
 {
 	public class ExpenseListItemViewModel : ViewModelBase
 	{
+		private string information;
 		private ObservableCollection<ExpenseItemViewModel> items;
 		private string title;
-		private string information;
 
 		public ExpenseListItemViewModel()
 		{
-			this.InitializeItems();
+			InitializeItems();
 		}
 
 		public ExpenseListItemViewModel(string title, string information = null)
 		{
 			this.title = title;
 			this.information = information;
-			this.InitializeItems();
+			InitializeItems();
 		}
 
 		/// <summary>
-		/// Gets or sets the title of the collection.
+		///     Gets or sets the title of the collection.
 		/// </summary>
 		public string Title
 		{
-			get
-			{
-				return this.title;
-			}
+			get { return title; }
 			set
 			{
-				if (this.title != value)
+				if (title != value)
 				{
-					this.title = value;
-					this.OnPropertyChanged("Title");
+					title = value;
+					OnPropertyChanged("Title");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the information for the collection.
+		///     Gets or sets the information for the collection.
 		/// </summary>
 		public string TotalDescription
 		{
-			get
-			{
-				return string.Format("Total spend {0}", Total);
-			}
+			get { return string.Format("Total spend {0}", Total); }
 		}
 
 		public decimal Total { get; set; }
 
 		/// <summary>
-		/// A collection for <see cref="ExpenseItemViewModel"/> objects.
+		///     A collection for <see cref="ExpenseItemViewModel" /> objects.
 		/// </summary>
 		public ObservableCollection<ExpenseItemViewModel> Items
 		{
-			get
-			{
-				return this.items;
-			}
-			set
-			{
-				this.items = value;
-			}
+			get { return items; }
+			set { items = value; }
 		}
 
 		/// <summary>
-		/// Initializes the items.
+		///     Initializes the items.
 		/// </summary>
 		private void InitializeItems()
 		{
-			this.items = new ObservableCollection<ExpenseItemViewModel>();
+			items = new ObservableCollection<ExpenseItemViewModel>();
 			//for (int i = 1; i <= 3; i++)
 			//{
 			//	this.items.Add(new ExpenseItemViewModel()

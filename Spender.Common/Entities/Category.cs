@@ -5,6 +5,7 @@
 // // -----------------------------------------------------------------------
 
 using Spender.Common.Entities;
+
 namespace Spender.Model.Entities
 {
 	public class Category : IEntity

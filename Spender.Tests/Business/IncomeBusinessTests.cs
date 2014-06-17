@@ -4,18 +4,20 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Tests.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Moq;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -99,7 +101,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetIncomes_without_params_should_retrun_all()
 		{
-			var result = _incomeBusiness.GetIncomes(_user).ToList();
+			List<Income> result = _incomeBusiness.GetIncomes(_user).ToList();
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Count() == _incomes.Count);
 		}
@@ -107,9 +109,9 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetIncomes_with_category_should_return_allTime_for_this_category()
 		{
-			var result = _incomeBusiness.GetIncomes(_user, _firstCategory);
+			IEnumerable<Income> result = _incomeBusiness.GetIncomes(_user, _firstCategory);
 			Assert.IsNotNull(result);
-			foreach (var income in result)
+			foreach (Income income in result)
 			{
 				Assert.IsTrue(income.Category == _firstCategory);
 			}
@@ -118,9 +120,10 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetIncomes_with_category_and_time_should_return_this_time_for_this_category()
 		{
-			var result = _incomeBusiness.GetIncomes(_user, _firstCategory, DateTime.Now.AddDays(-215), DateTime.Now);
+			IEnumerable<Income> result = _incomeBusiness.GetIncomes(_user, _firstCategory, DateTime.Now.AddDays(-215),
+				DateTime.Now);
 			Assert.IsNotNull(result);
-			foreach (var income in result)
+			foreach (Income income in result)
 			{
 				Assert.IsTrue(income.Date > DateTime.Now.AddDays(-215));
 				Assert.IsTrue(income.Date < DateTime.Now);
@@ -131,11 +134,11 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetIncomes_with_only_time_should_return_this_time_for_this_category()
 		{
-			var result = _incomeBusiness.GetIncomes(_user, DateTime.Now.AddDays(-215), DateTime.Now).ToList();
+			List<Income> result = _incomeBusiness.GetIncomes(_user, DateTime.Now.AddDays(-215), DateTime.Now).ToList();
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Any(r => r.Category.Id == _firstCategory.Id));
 			Assert.IsTrue(result.Any(r => r.Category.Id == _secondCategory.Id));
-			foreach (var income in result)
+			foreach (Income income in result)
 			{
 				Assert.IsTrue(income.Date > DateTime.Now.AddDays(-215));
 				Assert.IsTrue(income.Date < DateTime.Now);
@@ -145,7 +148,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetOnById_should_return_income_whith_such_id()
 		{
-			var result = _incomeBusiness.GetIncomeById(_user, "Test1");
+			Income result = _incomeBusiness.GetIncomeById(_user, "Test1");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test1");
 		}
@@ -167,7 +170,7 @@ namespace Spender.Tests.Business
 			};
 			_incomeBusiness.AddIncome(income);
 
-			var result = _incomeBusiness.GetIncomeById(_user, "Test");
+			Income result = _incomeBusiness.GetIncomeById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 		}
@@ -194,7 +197,7 @@ namespace Spender.Tests.Business
 			_incomeBusiness.AddIncome(income);
 			_incomeBusiness.AddIncome(income2);
 
-			var result = _incomeBusiness.GetIncomeById(_user, "Test");
+			Income result = _incomeBusiness.GetIncomeById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 
@@ -210,7 +213,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnRemover_with_one_should_remove_one()
 		{
-			var result = _incomeBusiness.GetIncomeById(_user, "Test1");
+			Income result = _incomeBusiness.GetIncomeById(_user, "Test1");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test1");
 			_incomeBusiness.RemoveIncome(result);
@@ -241,7 +244,7 @@ namespace Spender.Tests.Business
 			list.Add(income);
 			list.Add(income2);
 			_incomeBusiness.AddIncome(list);
-			var result = _incomeBusiness.GetIncomeById(_user, "Test");
+			Income result = _incomeBusiness.GetIncomeById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 			result = _incomeBusiness.GetIncomeById(_user, "Test2");

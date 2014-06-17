@@ -6,6 +6,7 @@
 
 namespace Spender.Model.Entities
 {
+
 	#region Using
 
 	#endregion

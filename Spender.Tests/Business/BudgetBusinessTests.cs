@@ -4,18 +4,20 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Spender.Common.Entities;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Tests.Business
 {
 	#region Using
 
-	using System.Collections.Generic;
-	using System.Linq;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Moq;
-	using Spender.Common.Entities;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -97,7 +99,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_return_budget_for_category_according_to_interval_month()
 		{
-			var budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, _firstCategory);
+			Budget budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, _firstCategory);
 			Assert.IsTrue(budget.Id == _firstBudget.Id);
 			Assert.IsTrue(budget.Value == _firstBudget.Value);
 		}
@@ -105,28 +107,28 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_return_budget_for_category_according_to_interval_Year()
 		{
-			var budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Year, _firstCategory);
+			Budget budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Year, _firstCategory);
 			Assert.IsTrue(budget.Value == (_firstBudget.Value*12));
 		}
 
 		[TestMethod]
 		public void Should_return_budget_for_category_according_to_interval_Quarter()
 		{
-			var budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Quarter, _firstCategory);
+			Budget budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Quarter, _firstCategory);
 			Assert.IsTrue(budget.Value == (_firstBudget.Value*4));
 		}
 
 		[TestMethod]
 		public void Should_return_budget_for_category_according_to_interval_Day()
 		{
-			var budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Day, _firstCategory);
+			Budget budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Day, _firstCategory);
 			Assert.IsTrue(budget.Value == (_firstBudget.Value/30));
 		}
 
 		[TestMethod]
 		public void Should_return_budget_for_category_according_to_interval_WeekOfYear()
 		{
-			var budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.WeekOfYear, _firstCategory);
+			Budget budget = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.WeekOfYear, _firstCategory);
 			Assert.IsTrue(budget.Value == ((_firstBudget.Value/30)*7));
 		}
 
@@ -137,7 +139,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_dafeault_month()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _budgets[0].Id);
@@ -148,13 +150,13 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_month()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Month).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Month).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _budgets[0].Id);
 			for (int i = 0; i < budgets.Count; i++)
 			{
-				var budget = budgets[i];
+				Budget budget = budgets[i];
 				Assert.IsTrue(budget.Interval == DateInterval.Month);
 				Assert.IsTrue(budget.Value == _copyBudgets[i].Value);
 			}
@@ -164,13 +166,13 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_Year()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Year).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Year).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _budgets[0].Id);
 			for (int i = 0; i < budgets.Count; i++)
 			{
-				var budget = budgets[i];
+				Budget budget = budgets[i];
 				Assert.IsTrue(budget.Interval == DateInterval.Year);
 				Assert.IsTrue(budget.Value == _copyBudgets[i].Value*12);
 			}
@@ -179,13 +181,13 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_WeekOfYear()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user, DateInterval.WeekOfYear).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user, DateInterval.WeekOfYear).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _budgets[0].Id);
 			for (int i = 0; i < budgets.Count; i++)
 			{
-				var budget = budgets[i];
+				Budget budget = budgets[i];
 				Assert.IsTrue(budget.Interval == DateInterval.WeekOfYear);
 				Assert.IsTrue(budget.Value == (_copyBudgets[i].Value/30)*7);
 			}
@@ -194,13 +196,13 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_Quarter()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Quarter).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Quarter).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _copyBudgets[0].Id);
 			for (int i = 0; i < budgets.Count; i++)
 			{
-				var budget = budgets[i];
+				Budget budget = budgets[i];
 				Assert.IsTrue(budget.Interval == DateInterval.Quarter);
 				Assert.IsTrue(budget.Value == _copyBudgets[i].Value*4);
 			}
@@ -209,13 +211,13 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void Should_retrun_all_budgets_for_interval_Day()
 		{
-			var budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Day).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user, DateInterval.Day).ToList();
 			Assert.IsNotNull(budgets);
 			Assert.IsTrue(budgets.Count() == _budgets.Count());
 			Assert.IsTrue(budgets[0].Id == _budgets[0].Id);
 			for (int i = 0; i < budgets.Count; i++)
 			{
-				var budget = budgets[i];
+				Budget budget = budgets[i];
 				Assert.IsTrue(budget.Interval == DateInterval.Day);
 				Assert.IsTrue(budget.Value == _copyBudgets[i].Value/30);
 			}
@@ -238,7 +240,7 @@ namespace Spender.Tests.Business
 				Category = category
 			};
 			_budgetBusiness.SaveBudget(budgetInput);
-			var result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
+			Budget result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Category == category);
 			Assert.IsTrue(result.Id == "3");
@@ -273,7 +275,7 @@ namespace Spender.Tests.Business
 				Category = category
 			};
 			_budgetBusiness.SaveBudget(budgetInput);
-			var result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
+			Budget result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Category == category);
 			Assert.IsTrue(result.Id == "3");
@@ -294,7 +296,7 @@ namespace Spender.Tests.Business
 				Category = category
 			};
 			_budgetBusiness.SaveBudget(budgetInput);
-			var result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
+			Budget result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Category == category);
 			Assert.IsTrue(result.Id == "3");
@@ -315,7 +317,7 @@ namespace Spender.Tests.Business
 				Category = category
 			};
 			_budgetBusiness.SaveBudget(budgetInput);
-			var result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
+			Budget result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Category == category);
 			Assert.IsTrue(result.Id == "3");
@@ -336,7 +338,7 @@ namespace Spender.Tests.Business
 				Category = category
 			};
 			_budgetBusiness.SaveBudget(budgetInput);
-			var result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
+			Budget result = _budgetBusiness.GetBudgetForCategory(_user, DateInterval.Month, category);
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Category == category);
 			Assert.IsTrue(result.Id == "3");
@@ -352,7 +354,7 @@ namespace Spender.Tests.Business
 		public void On_Remove_should_remove()
 		{
 			_budgetBusiness.RemoveBudget(_firstBudget);
-			var budgets = _budgetBusiness.GetBudgets(_user).ToList();
+			List<Budget> budgets = _budgetBusiness.GetBudgets(_user).ToList();
 			Assert.IsTrue(budgets.Count() == 1);
 			Assert.IsTrue(budgets[0].Id == _secondBudget.Id);
 		}

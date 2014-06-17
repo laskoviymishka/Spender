@@ -4,16 +4,18 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Model.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Data.Entity;
-	using System.Linq;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -72,7 +74,7 @@ namespace Spender.Model.Business
 
 		public void AddIncome(IEnumerable<Income> expenses)
 		{
-			foreach (var expense in expenses)
+			foreach (Income expense in expenses)
 			{
 				AddIncome(expense);
 			}
@@ -85,7 +87,7 @@ namespace Spender.Model.Business
 
 		public void RemoveIncome(IEnumerable<Income> incomes)
 		{
-			foreach (var income in incomes)
+			foreach (Income income in incomes)
 			{
 				RemoveIncome(income);
 			}

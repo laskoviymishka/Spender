@@ -1,4 +1,6 @@
-﻿using Spender.Common.Entities;
+﻿using System;
+using Spender.Common.Entities;
+
 // // -----------------------------------------------------------------------
 // // <copyright file="Budget.cs"  company="One Call Care Management, Inc.">
 // // Copyright (c) One Call Care Management, Inc. All rights reserved.
@@ -9,8 +11,7 @@ namespace Spender.Model.Entities
 {
 	#region Using
 
-	using System;
-	using Spender.Common.Entities;
+	
 
 	#endregion
 

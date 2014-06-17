@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Spender.Model.Entities;
 using Spender.WinPhone.DataService.Interfaces;
-using Spender.WinPhone.Model;
 using Spender.WinPhone.ViewModel;
 using Spender.WinPhone.ViewModels;
 
 namespace Spender.WinPhone.DataService
 {
-	public class ExpenseService: IExpenseService
+	public class ExpenseService : IExpenseService
 	{
 		public IEnumerable<ExpenseListItemViewModel> GenerateExpenseList()
 		{
@@ -25,16 +21,16 @@ namespace Spender.WinPhone.DataService
 			var allElementa = new ExpenseListItemViewModel("all");
 
 
-			foreach (var item in GetMockExpenses()) 
+			foreach (Expense item in GetMockExpenses())
 			{
 				if (item.Date >= DateTime.Now.AddDays(-1))
 				{
 					dayElementa.Total += item.Amount;
 					dayElementa.Items.Add(new ExpenseItemViewModel
 					{
- 						Title = item.Name,
+						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -46,7 +42,7 @@ namespace Spender.WinPhone.DataService
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -58,7 +54,7 @@ namespace Spender.WinPhone.DataService
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -70,7 +66,7 @@ namespace Spender.WinPhone.DataService
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}",item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -82,7 +78,7 @@ namespace Spender.WinPhone.DataService
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -94,7 +90,7 @@ namespace Spender.WinPhone.DataService
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount.ToString()),
+						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
 					});
 				}
@@ -121,9 +117,21 @@ namespace Spender.WinPhone.DataService
 
 		private List<Expense> GetMockExpenses()
 		{
-			var _user = new ExpenseUser { Id = "1" };
-			var _firstCategory = new Category { Id = "1", Name = "Test", Type = CategoryType.Expense, Image = @"http://cdn0.iconfinder.com/data/icons/simple-seo-and-internet-icons/512/links_building_add-512.png" };
-			var _secondCategory = new Category { Id = "2", Name = "Test2", Type = CategoryType.Expense, Image = @"https://cdn4.iconfinder.com/data/icons/eldorado-mobile/40/link_3-512.png" };
+			var _user = new ExpenseUser {Id = "1"};
+			var _firstCategory = new Category
+			{
+				Id = "1",
+				Name = "Test",
+				Type = CategoryType.Expense,
+				Image = @"http://cdn0.iconfinder.com/data/icons/simple-seo-and-internet-icons/512/links_building_add-512.png"
+			};
+			var _secondCategory = new Category
+			{
+				Id = "2",
+				Name = "Test2",
+				Type = CategoryType.Expense,
+				Image = @"https://cdn4.iconfinder.com/data/icons/eldorado-mobile/40/link_3-512.png"
+			};
 			var result = new List<Expense>();
 			result.Add(new Expense
 			{
@@ -136,7 +144,7 @@ namespace Spender.WinPhone.DataService
 			result.Add(new Expense
 			{
 				Id = "11",
-				Name="test expense",
+				Name = "test expense",
 				Category = _firstCategory,
 				Amount = 12,
 				User = _user,
@@ -146,7 +154,6 @@ namespace Spender.WinPhone.DataService
 			{
 				Id = "21",
 				Name = "test expense",
-
 				Category = _firstCategory,
 				Amount = 10,
 				User = _user,

@@ -3,10 +3,11 @@
 // // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
+
+using Spender.Model.Entities;
+
 namespace Spender.Model.Business
 {
-	using Spender.Model.Entities;
-
 	public interface IUserBusiness
 	{
 		ExpenseUser GetById(string id);

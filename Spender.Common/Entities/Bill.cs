@@ -4,11 +4,13 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+
 namespace Spender.Model.Entities
 {
 	#region Using
 
-	using System;
+	
 
 	#endregion
 

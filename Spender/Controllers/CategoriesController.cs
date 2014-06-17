@@ -4,23 +4,25 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+using Spender.Models;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Net;
-	using System.Net.Http;
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Web.Http;
-	using Microsoft.AspNet.Identity;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-	using Spender.Models;
+	
 
 	#endregion
 
@@ -42,7 +44,7 @@ namespace Spender.Controllers
 		[Route("api/Categories/GetIncomeCategories")]
 		public IEnumerable<Category> GetIncomeCategories()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _categoryBusiness.GetUserCategories(user, CategoryType.Income);
 		}
 
@@ -50,7 +52,7 @@ namespace Spender.Controllers
 		[Route("api/Categories/GetUserCategories")]
 		public IEnumerable<Category> GetAllCategories()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			var result = new List<Category>();
 			result.AddRange(_categoryBusiness.GetUserCategories(user, CategoryType.Income));
 			result.AddRange(_categoryBusiness.GetUserCategories(user, CategoryType.Expense));
@@ -61,7 +63,7 @@ namespace Spender.Controllers
 		[Route("api/Categories/GetExpenseCategories")]
 		public IEnumerable<Category> GetExpenseCategories()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _categoryBusiness.GetUserCategories(user, CategoryType.Expense);
 		}
 
@@ -89,11 +91,11 @@ namespace Spender.Controllers
 				throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 			}
 			string root = HttpContext.Current.Server.MapPath("~/App_Data");
-			var rootUrl = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.AbsolutePath, String.Empty);
+			string rootUrl = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.AbsolutePath, String.Empty);
 			var provider = new MultipartFormDataStreamProvider(root);
 			try
 			{
-				var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+				var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 				var category = new Category
 				{
 					Id = Guid.NewGuid().ToString(),

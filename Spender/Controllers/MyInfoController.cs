@@ -4,19 +4,19 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Web.Mvc;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System.Web.Mvc;
-	using System.Web.UI.WebControls.WebParts;
+	
 
 	#endregion
 
 	[Authorize]
 	public class MyInfoController : Controller
 	{
-
 		public ActionResult Index()
 		{
 			return View();

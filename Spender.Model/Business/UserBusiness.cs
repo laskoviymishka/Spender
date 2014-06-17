@@ -3,12 +3,13 @@
 // // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
+
+using System.Linq;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Model.Business
 {
-	using System.Linq;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-
 	public class UserBusiness : IUserBusiness
 	{
 		private readonly IRepository<ExpenseUser> _repository;

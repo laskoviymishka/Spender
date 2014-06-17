@@ -4,11 +4,13 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Linq;
+
 namespace Spender.Model.Repository
 {
 	#region Using
 
-	using System.Linq;
+	
 
 	#endregion
 

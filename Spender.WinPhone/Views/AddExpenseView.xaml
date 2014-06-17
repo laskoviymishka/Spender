@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage 
+﻿<phone:PhoneApplicationPage
     x:Class="Spender.WinPhone.Views.AddExpenseView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,67 +20,71 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="APP TITLE" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="APP TITLE" Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="PageTitle" Text="page title" Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="0,6,0,6">
             <ScrollViewer>
                 <telerikInput:RadDataForm Grid.Row="1" Margin="12,0,12,12" x:Name="DataForm">
                     <telerikInput:RadDataForm.CurrentItem>
-                        <models:ExpenseFormDataModel/>
+                        <models:ExpenseFormDataModel />
                     </telerikInput:RadDataForm.CurrentItem>
                     <Grid>
                         <telerikInput:DataField Header="Type name" TargetProperty="Name">
                             <telerikInput:DataField.Validators>
-                                <telerikInput:NonEmptyStringValidator/>
+                                <telerikInput:NonEmptyStringValidator />
                             </telerikInput:DataField.Validators>
                         </telerikInput:DataField>
                         <telerikInput:DataField Header="Select category" TargetProperty="Category">
                             <telerikInput:DataField.Validators>
-                                <telerikInput:NonEmptyStringValidator/>
+                                <telerikInput:NonEmptyStringValidator />
                             </telerikInput:DataField.Validators>
                         </telerikInput:DataField>
                         <TextBlock Margin="12,0,0,0" Text="Date selection" />
                         <telerikInput:DataField Header="" TargetProperty="Date">
                             <telerikInput:DataField.EditorStyles>
                                 <Style TargetType="telerikInput:RadDatePicker">
-                                    <Setter Property="EmptyContent" Value="Select Date"/>
+                                    <Setter Property="EmptyContent" Value="Select Date" />
                                 </Style>
                             </telerikInput:DataField.EditorStyles>
                             <telerikInput:DataField.Validators>
-                                <helpers:NonEmptyDateValidator/>
+                                <helpers:NonEmptyDateValidator />
                             </telerikInput:DataField.Validators>
                         </telerikInput:DataField>
-                        
+
                         <telerikInput:DataField Header="Number Field:" TargetProperty="Amount">
-                            <telerikInput:RadNumericUpDown x:Name="radNumericUpDown" VerticalAlignment="Center" InitialRepeatInterval="500" RepeatIntervalDecrementStep="50" MinimumRepeatInterval="100" />
+                            <telerikInput:RadNumericUpDown x:Name="radNumericUpDown" VerticalAlignment="Center"
+                                                           InitialRepeatInterval="500" RepeatIntervalDecrementStep="50"
+                                                           MinimumRepeatInterval="100" />
                         </telerikInput:DataField>
                         <StackPanel Orientation="Vertical" Grid.Row="5" Margin="2, 2,2,2">
                             <Grid HorizontalAlignment="Center">
-                                <Ellipse Width="78" 
-                             Height="78"
-                             x:Name="btnNewPhoto" 
-                             Tap="btnNewPhoto_Tap" 
-                             Fill="#259DA0" 
-                             HorizontalAlignment="Center"/>
+                                <Ellipse Width="78"
+                                         Height="78"
+                                         x:Name="btnNewPhoto"
+                                         Tap="btnNewPhoto_Tap"
+                                         Fill="#259DA0"
+                                         HorizontalAlignment="Center" />
                                 <Rectangle HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center"
-                                   Height="6"
-                                   Width="34"
-                                   Fill="{StaticResource PhoneBackgroundBrush}"/>
+                                           VerticalAlignment="Center"
+                                           Height="6"
+                                           Width="34"
+                                           Fill="{StaticResource PhoneBackgroundBrush}" />
                                 <Rectangle HorizontalAlignment="Center"
-                                   VerticalAlignment="Stretch"
-                                   Fill="{StaticResource PhoneBackgroundBrush}"
-                                   Width="6"
-                                   Height="34"/>
+                                           VerticalAlignment="Stretch"
+                                           Fill="{StaticResource PhoneBackgroundBrush}"
+                                           Width="6"
+                                           Height="34" />
                             </Grid>
-                            <TextBlock Text="CHOOSE CHECK" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="#259DA0" HorizontalAlignment="Center"/>
+                            <TextBlock Text="CHOOSE CHECK" FontSize="{StaticResource PhoneFontSizeSmall}"
+                                       Foreground="#259DA0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Grid>
                 </telerikInput:RadDataForm>
@@ -90,8 +94,9 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerOk.png" Text="Ok" Click="ApplicationBarIconButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerCancel.png" Text="Cancel"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerOk.png" Text="Ok"
+                                            Click="ApplicationBarIconButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerCancel.png" Text="Cancel" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

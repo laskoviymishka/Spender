@@ -1,14 +1,16 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using Spender;
 
-[assembly: OwinStartupAttribute(typeof(Spender.Startup))]
+[assembly: OwinStartup(typeof (Startup))]
+
 namespace Spender
 {
-    public partial class Startup
-    {
-        public void Configuration(IAppBuilder app)
-        {
-            ConfigureAuth(app);
-        }
-    }
+	public partial class Startup
+	{
+		public void Configuration(IAppBuilder app)
+		{
+			ConfigureAuth(app);
+		}
+	}
 }

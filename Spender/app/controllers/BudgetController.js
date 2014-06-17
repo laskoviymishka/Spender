@@ -1,3 +1,3 @@
 ﻿BudgetController = function($scope, $http) {
-    
+
 }

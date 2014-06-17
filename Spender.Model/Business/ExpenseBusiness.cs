@@ -4,16 +4,18 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Model.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Data.Entity;
-	using System.Linq;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -50,7 +52,8 @@ namespace Spender.Model.Business
 
 		public IEnumerable<Expense> GetExpenses(ExpenseUser user, DateTime start, DateTime end)
 		{
-			return _repository.Query().Include(e => e.Category).Where(e => e.User.Id == user.Id && e.Date >= start && e.Date <= end);
+			return
+				_repository.Query().Include(e => e.Category).Where(e => e.User.Id == user.Id && e.Date >= start && e.Date <= end);
 		}
 
 		public void AddExpense(Expense expense)
@@ -60,7 +63,7 @@ namespace Spender.Model.Business
 
 		public void AddExpense(IEnumerable<Expense> expenses)
 		{
-			foreach (var expense in expenses)
+			foreach (Expense expense in expenses)
 			{
 				AddExpense(expense);
 			}
@@ -73,7 +76,7 @@ namespace Spender.Model.Business
 
 		public void RemoveExpense(IEnumerable<Expense> expenses)
 		{
-			foreach (var expense in expenses)
+			foreach (Expense expense in expenses)
 			{
 				RemoveExpense(expense);
 			}

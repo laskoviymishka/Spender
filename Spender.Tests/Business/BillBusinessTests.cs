@@ -4,18 +4,20 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Tests.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Moq;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -101,10 +103,10 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetBills_with_only_user_should_return_all_bills()
 		{
-			var results = _billBusiness.GetBills(_user).ToList();
+			List<Bill> results = _billBusiness.GetBills(_user).ToList();
 			Assert.IsNotNull(results);
 			Assert.IsTrue(results.Count == _bills.Count);
-			foreach (var result in results)
+			foreach (Bill result in results)
 			{
 				Assert.IsTrue(result.User == _user);
 			}
@@ -113,9 +115,9 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetBills_with_deadline_and_user_should_return_all_bills()
 		{
-			var results = _billBusiness.GetBills(_user, DateTime.Now).ToList();
+			List<Bill> results = _billBusiness.GetBills(_user, DateTime.Now).ToList();
 			Assert.IsNotNull(results);
-			foreach (var result in results)
+			foreach (Bill result in results)
 			{
 				Assert.IsTrue(result.Deadline >= DateTime.Now);
 				Assert.IsTrue(result.User == _user);
@@ -125,9 +127,9 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetBills_with_category_and_user_should_return_all_bills()
 		{
-			var results = _billBusiness.GetBills(_user, _firstCategory).ToList();
+			List<Bill> results = _billBusiness.GetBills(_user, _firstCategory).ToList();
 			Assert.IsNotNull(results);
-			foreach (var result in results)
+			foreach (Bill result in results)
 			{
 				Assert.IsTrue(result.Category == _firstCategory);
 				Assert.IsTrue(result.User == _user);
@@ -137,9 +139,9 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetBills_with_category_and_user_and_deadline_should_return_all_bills()
 		{
-			var results = _billBusiness.GetBills(_user, _firstCategory, DateTime.Now).ToList();
+			List<Bill> results = _billBusiness.GetBills(_user, _firstCategory, DateTime.Now).ToList();
 			Assert.IsNotNull(results);
-			foreach (var result in results)
+			foreach (Bill result in results)
 			{
 				Assert.IsTrue(result.Category == _firstCategory);
 				Assert.IsTrue(result.User == _user);
@@ -154,7 +156,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnPayBill_bill_one_shoudl_remove_and_add_expense()
 		{
-			var bill = _billBusiness.GetBillById("Test");
+			Bill bill = _billBusiness.GetBillById("Test");
 			_billBusiness.PayBill(bill);
 			bill = _billBusiness.GetBillById("Test");
 			Assert.IsNull(bill);
@@ -168,7 +170,7 @@ namespace Spender.Tests.Business
 			list.Add(_billBusiness.GetBillById("Test"));
 			list.Add(_billBusiness.GetBillById("Test2"));
 			_billBusiness.PayBill(list);
-			var bill = _billBusiness.GetBillById("Test");
+			Bill bill = _billBusiness.GetBillById("Test");
 			Assert.IsNull(bill);
 			bill = _billBusiness.GetBillById("Test2");
 			Assert.IsNull(bill);

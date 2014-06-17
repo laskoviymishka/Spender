@@ -1,160 +1,133 @@
-﻿
-using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System;
 using Telerik.Windows.Controls;
 
 namespace Spender.WinPhone.ViewModels
 {
 	public class ExpenseItemViewModel : ViewModelBase
 	{
+		private string group;
 		private Uri imageSource;
 		private Uri imageThumbnailSource;
-		private string title;
 		private string information;
-		private string group;
+		private string title;
 
 		/// <summary>
-		/// Gets or sets the image source.
+		///     Gets or sets the image source.
 		/// </summary>
 		public Uri ImageSource
 		{
-			get
-			{
-				return this.imageSource;
-			}
+			get { return imageSource; }
 			set
 			{
-				if (this.imageSource != value)
+				if (imageSource != value)
 				{
-					this.imageSource = value;
-					this.OnPropertyChanged("ImageSource");
+					imageSource = value;
+					OnPropertyChanged("ImageSource");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the image thumbnail source.
+		///     Gets or sets the image thumbnail source.
 		/// </summary>
 		public Uri ImageThumbnailSource
 		{
-			get
-			{
-				return this.imageThumbnailSource;
-			}
+			get { return imageThumbnailSource; }
 			set
 			{
-				if (this.imageThumbnailSource != value)
+				if (imageThumbnailSource != value)
 				{
-					this.imageThumbnailSource = value;
-					this.OnPropertyChanged("ImageThumbnailSource");
+					imageThumbnailSource = value;
+					OnPropertyChanged("ImageThumbnailSource");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the title.
+		///     Gets or sets the title.
 		/// </summary>
 		public string Title
 		{
-			get
-			{
-				return this.title;
-			}
+			get { return title; }
 			set
 			{
-				if (this.title != value)
+				if (title != value)
 				{
-					this.title = value;
-					this.OnPropertyChanged("Title");
+					title = value;
+					OnPropertyChanged("Title");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the information.
+		///     Gets or sets the information.
 		/// </summary>
 		public string Information
 		{
-			get
-			{
-				return this.information;
-			}
+			get { return information; }
 			set
 			{
-				if (this.information != value)
+				if (information != value)
 				{
-					this.information = value;
-					this.OnPropertyChanged("TotalDescription");
+					information = value;
+					OnPropertyChanged("TotalDescription");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the group.
+		///     Gets or sets the group.
 		/// </summary>
 		public string Group
 		{
-			get
-			{
-				return this.group;
-			}
+			get { return @group; }
 			set
 			{
-				if (this.group != value)
+				if (@group != value)
 				{
-					this.group = value;
-					this.OnPropertyChanged("Group");
+					@group = value;
+					OnPropertyChanged("Group");
 				}
 			}
 		}
 
 		/// <summary>
-		/// Returns a <see cref="System.String"/> that represents this instance.
+		///     Returns a <see cref="System.String" /> that represents this instance.
 		/// </summary>
 		/// <returns>
-		/// A <see cref="System.String"/> that represents this instance.
+		///     A <see cref="System.String" /> that represents this instance.
 		/// </returns>
 		public override string ToString()
 		{
-			return this.title;
+			return title;
 		}
 
-		/// <summary> 
-		/// Determines whether the specified <see cref="System.Object"/> is equal to this instance. 
-		/// </summary> 
-		/// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param> 
-		/// <returns> 
-		///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.  
-
-		/// </returns> 
+		/// <summary>
+		///     Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+		/// </summary>
+		/// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+		/// <returns>
+		///     <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+		/// </returns>
 		public override bool Equals(object obj)
 		{
-			ExpenseItemViewModel typedObject = obj as ExpenseItemViewModel;
+			var typedObject = obj as ExpenseItemViewModel;
 			if (typedObject == null)
 			{
 				return false;
 			}
-			return this.Title == typedObject.Title && this.Information == typedObject.Information;
+			return Title == typedObject.Title && Information == typedObject.Information;
 		}
 
-		/// <summary> 
-		/// Returns a hash code for this instance. 
-		/// </summary> 
-		/// <returns> 
-		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.   
-
-		/// </returns> 
+		/// <summary>
+		///     Returns a hash code for this instance.
+		/// </summary>
+		/// <returns>
+		///     A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+		/// </returns>
 		public override int GetHashCode()
 		{
-			return this.Title.GetHashCode() ^ this.Information.GetHashCode();
+			return Title.GetHashCode() ^ Information.GetHashCode();
 		}
 	}
 }

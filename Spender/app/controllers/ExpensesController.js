@@ -15,26 +15,26 @@
         });
     };
 
-    $scope.$on('expenseModalInstanceClosed', function () {
-        $http.get(getExpensesUri).success(function (result) {
+    $scope.$on('expenseModalInstanceClosed', function() {
+        $http.get(getExpensesUri).success(function(result) {
             $scope.expenses = result;
         }).error(broadcasterService.error);
     });
 };
 
-addExpenseModalCntl = function ($scope, $http, $modalInstance, $upload, broadcasterService) {
+addExpenseModalCntl = function($scope, $http, $modalInstance, $upload, broadcasterService) {
     $scope.model = {};
     $scope.model.Date = new Date;
     var getCategories = 'api/Categories/GetExpenseCategories';
-    $http.get(getCategories).success(function (categries) {
+    $http.get(getCategories).success(function(categries) {
         $scope.categories = categries;
     }).error(broadcasterService.error);
-    $scope.onFileSelect = function ($files) {
+    $scope.onFileSelect = function($files) {
         $scope.file = $files[0];
 
     };
 
-    $scope.save = function () {
+    $scope.save = function() {
         var file = $scope.file;
         var uriTemplate = 'api/Expenses/PostFormData/{name}&={note}&={categoryId}&={amount}&={date}';
         var uriPost = uriTemplate.replace('{name}', $scope.model.Name)
@@ -46,11 +46,11 @@ addExpenseModalCntl = function ($scope, $http, $modalInstance, $upload, broadcas
         $scope.upload = $upload.upload({
             url: uriPost,
             file: file
-        }).progress(function (evt) {
+        }).progress(function(evt) {
             console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             console.log(data, status, headers, config);
-        }).then(function () {
+        }).then(function() {
             $modalInstance.close();
             broadcasterService.broadcast({
                 event: 'expenseModalInstanceClosed',
@@ -59,7 +59,7 @@ addExpenseModalCntl = function ($scope, $http, $modalInstance, $upload, broadcas
         });
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
 };

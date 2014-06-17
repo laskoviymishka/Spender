@@ -4,15 +4,17 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Model.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -65,7 +67,7 @@ namespace Spender.Model.Business
 		public void AddDefaultCategoryList(ExpenseUser user)
 		{
 			var result = new List<Category>();
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Home Rent",
@@ -73,7 +75,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Utilities",
@@ -81,7 +83,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Food",
@@ -89,7 +91,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Entertaiment",
@@ -97,7 +99,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Medical",
@@ -105,7 +107,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Transport",
@@ -113,7 +115,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Expense,
 				User = user
 			});
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Misc One-time",
@@ -123,7 +125,7 @@ namespace Spender.Model.Business
 			});
 
 
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Salary",
@@ -132,7 +134,7 @@ namespace Spender.Model.Business
 				User = user
 			});
 
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Other income",
@@ -141,7 +143,7 @@ namespace Spender.Model.Business
 				User = user
 			});
 
-			result.Add(new Category()
+			result.Add(new Category
 			{
 				Id = Guid.NewGuid().ToString(),
 				Name = "Gifts",
@@ -149,7 +151,7 @@ namespace Spender.Model.Business
 				Type = CategoryType.Income,
 				User = user
 			});
-			foreach (var category in result)
+			foreach (Category category in result)
 			{
 				_repository.Add(category);
 			}

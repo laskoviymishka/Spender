@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage 
+﻿<phone:PhoneApplicationPage
     x:Class="Spender.WinPhone.Views.ExpenseListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,42 +15,49 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    
-   <UserControl.DataContext>
-        <viewModels:ExpenseDateViewModel/>
+
+    <UserControl.DataContext>
+        <viewModels:ExpenseDateViewModel />
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <helpers:StringToUpperConverter x:Key="StringToUpperConverter"/>
+        <helpers:StringToUpperConverter x:Key="StringToUpperConverter" />
         <Style x:Key="CustomLinkStyle" TargetType="HyperlinkButton">
-            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeSmall}"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeSmall}" />
+            <Setter Property="Padding" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="HyperlinkButton">
                         <Border Background="Transparent">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TextElement"/>
+                                            <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="TextElement" />
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="TextElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Border Background="{TemplateBinding Background}" Margin="{StaticResource PhoneHorizontalMargin}" Padding="{TemplateBinding Padding}">
-                                <TextBlock x:Name="TextElement" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Text="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Border Background="{TemplateBinding Background}"
+                                    Margin="{StaticResource PhoneHorizontalMargin}" Padding="{TemplateBinding Padding}">
+                                <TextBlock x:Name="TextElement"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Text="{TemplateBinding Content}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Border>
                         </Border>
                     </ControlTemplate>
@@ -61,37 +68,48 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="SPENDER" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Epxense list" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="SPENDER" Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="PageTitle" Text="Epxense list" Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding Items}" Margin="11,3">
                 <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                     <DataTemplate>
-                        <telerikPrimitives:RadExpanderControl ExpandableContent="{Binding}" Content="{Binding}" BorderBrush="{StaticResource PhoneSubtleBrush}">
+                        <telerikPrimitives:RadExpanderControl ExpandableContent="{Binding}" Content="{Binding}"
+                                                              BorderBrush="{StaticResource PhoneSubtleBrush}">
                             <telerikPrimitives:RadExpanderControl.AnimatedIndicatorContentTemplate>
-                                <DataTemplate/>
+                                <DataTemplate />
                             </telerikPrimitives:RadExpanderControl.AnimatedIndicatorContentTemplate>
                             <telerikPrimitives:RadExpanderControl.ContentTemplate>
                                 <DataTemplate>
                                     <Grid Margin="0,4,0,12">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <Rectangle Margin="38,0,0,0" Grid.Row="1" Width="2" Fill="{StaticResource PhoneSubtleBrush}"/>
-                                        <TextBlock Margin="0,0,0,12" Grid.ColumnSpan="2" Text="{Binding Title}" TextWrapping="Wrap" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="Segoe WP SemiLight" Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                        <HyperlinkButton Grid.Column="1" Grid.Row="1" Margin="0,6" HorizontalAlignment="Left" Content="{Binding TotalDescription}" Style="{StaticResource CustomLinkStyle}" Foreground="{StaticResource PhoneSubtleBrush}" Tap="ExpandExpander"/>
+                                        <Rectangle Margin="38,0,0,0" Grid.Row="1" Width="2"
+                                                   Fill="{StaticResource PhoneSubtleBrush}" />
+                                        <TextBlock Margin="0,0,0,12" Grid.ColumnSpan="2" Text="{Binding Title}"
+                                                   TextWrapping="Wrap" FontSize="{StaticResource PhoneFontSizeLarge}"
+                                                   FontFamily="Segoe WP SemiLight"
+                                                   Foreground="{StaticResource PhoneForegroundBrush}" />
+                                        <HyperlinkButton Grid.Column="1" Grid.Row="1" Margin="0,6"
+                                                         HorizontalAlignment="Left"
+                                                         Content="{Binding TotalDescription}"
+                                                         Style="{StaticResource CustomLinkStyle}"
+                                                         Foreground="{StaticResource PhoneSubtleBrush}"
+                                                         Tap="ExpandExpander" />
                                     </Grid>
                                 </DataTemplate>
                             </telerikPrimitives:RadExpanderControl.ContentTemplate>
@@ -99,10 +117,13 @@
                                 <DataTemplate>
                                     <Grid Margin="0,4,0,12">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="Segoe WP SemiLight" Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap"
+                                                   FontSize="{StaticResource PhoneFontSizeLarge}"
+                                                   FontFamily="Segoe WP SemiLight"
+                                                   Foreground="{StaticResource PhoneForegroundBrush}" />
                                     </Grid>
                                 </DataTemplate>
                             </telerikPrimitives:RadExpanderControl.ExpandedStateContentTemplate>
@@ -110,33 +131,51 @@
                                 <DataTemplate>
                                     <Grid Margin="0,0,0,6">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Rectangle Margin="38,0,0,0" Grid.RowSpan="2" Width="2" Fill="{StaticResource PhoneSubtleBrush}"/>
-                                        <telerikPrimitives:RadDataBoundListBox Margin="0,6,0,0" Grid.Column="1" ItemsSource="{Binding Items}" IsHitTestVisible="False">
+                                        <Rectangle Margin="38,0,0,0" Grid.RowSpan="2" Width="2"
+                                                   Fill="{StaticResource PhoneSubtleBrush}" />
+                                        <telerikPrimitives:RadDataBoundListBox Margin="0,6,0,0" Grid.Column="1"
+                                                                               ItemsSource="{Binding Items}"
+                                                                               IsHitTestVisible="False">
                                             <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid Margin="14,6">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition />
                                                         </Grid.ColumnDefinitions>
-                                                        <Image Width="62" Height="62" Source="{Binding ImageSource}"/>
+                                                        <Image Width="62" Height="62" Source="{Binding ImageSource}" />
                                                         <StackPanel Grid.Column="1">
-                                                            <TextBlock Margin="12,-8,12,0" Grid.Column="1" Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" TextWrapping="Wrap" FontFamily="Segoe WP" FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Foreground="{StaticResource PhoneForegroundBrush}"/>
-                                                            <TextBlock Margin="12,0" Grid.Column="1" Text="{Binding Information}" TextWrapping="Wrap" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="{StaticResource PhoneFontSizeSmall}"/>
-                                                            <TextBlock Margin="220,0,12,0" Grid.Column="1" Text="{Binding Group}" TextWrapping="Wrap" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="{StaticResource PhoneFontSizeSmall}"/>
+                                                            <TextBlock Margin="12,-8,12,0" Grid.Column="1"
+                                                                       Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}"
+                                                                       TextWrapping="Wrap" FontFamily="Segoe WP"
+                                                                       FontSize="{StaticResource PhoneFontSizeNormal}"
+                                                                       FontWeight="Bold"
+                                                                       Foreground="{StaticResource PhoneForegroundBrush}" />
+                                                            <TextBlock Margin="12,0" Grid.Column="1"
+                                                                       Text="{Binding Information}" TextWrapping="Wrap"
+                                                                       Foreground="{StaticResource PhoneForegroundBrush}"
+                                                                       FontSize="{StaticResource PhoneFontSizeSmall}" />
+                                                            <TextBlock Margin="220,0,12,0" Grid.Column="1"
+                                                                       Text="{Binding Group}" TextWrapping="Wrap"
+                                                                       Foreground="{StaticResource PhoneForegroundBrush}"
+                                                                       FontSize="{StaticResource PhoneFontSizeSmall}" />
                                                         </StackPanel>
                                                     </Grid>
                                                 </DataTemplate>
                                             </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                                         </telerikPrimitives:RadDataBoundListBox>
-                                        <HyperlinkButton Margin="0,12,0,6" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Content="Collapse" Style="{StaticResource CustomLinkStyle}" Foreground="{StaticResource PhoneSubtleBrush}" Tap="CollapseExpander"/>
+                                        <HyperlinkButton Margin="0,12,0,6" Grid.Column="1" Grid.Row="1"
+                                                         HorizontalAlignment="Left" Content="Collapse"
+                                                         Style="{StaticResource CustomLinkStyle}"
+                                                         Foreground="{StaticResource PhoneSubtleBrush}"
+                                                         Tap="CollapseExpander" />
                                     </Grid>
                                 </DataTemplate>
                             </telerikPrimitives:RadExpanderControl.ExpandableContentTemplate>
@@ -149,10 +188,11 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="Assets/Images/DateTimePickerOk.png" Text="Add Expense" Click="ApplicationBarIconButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="Assets/Images/DateTimePickerOk.png" Text="Add Expense"
+                                            Click="ApplicationBarIconButton_Click" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Manage category"/>
-                <shell:ApplicationBarMenuItem Text="Settings"/>
+                <shell:ApplicationBarMenuItem Text="Manage category" />
+                <shell:ApplicationBarMenuItem Text="Settings" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

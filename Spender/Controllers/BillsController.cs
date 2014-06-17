@@ -4,23 +4,25 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+using Spender.Models;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Net;
-	using System.Net.Http;
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Web.Http;
-	using Microsoft.AspNet.Identity;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
-	using Spender.Models;
+	
 
 	#endregion
 
@@ -62,7 +64,7 @@ namespace Spender.Controllers
 		[Route("api/Bills/getAll")]
 		public IEnumerable<Bill> GetBills()
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 			return _billBusiness.GetBills(user);
 		}
 
@@ -70,16 +72,16 @@ namespace Spender.Controllers
 		[Route("api/Bills/getByCategory/{categoryId}")]
 		public IEnumerable<Bill> GetBills(string categoryId)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = new Category { Id = categoryId };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			var category = new Category {Id = categoryId};
 			return _billBusiness.GetBills(user, category);
 		}
 
 		[Route("api/Bills/getByCategoryAndTime/{categoryId}/{deadline}")]
 		public IEnumerable<Bill> GetBills(string categoryId, string deadline)
 		{
-			var user = new ExpenseUser { Id = User.Identity.GetUserId() };
-			var category = new Category { Id = categoryId };
+			var user = new ExpenseUser {Id = User.Identity.GetUserId()};
+			var category = new Category {Id = categoryId};
 			return _billBusiness.GetBills(user, category, DateTime.Parse(deadline));
 		}
 
@@ -97,7 +99,7 @@ namespace Spender.Controllers
 			var provider = new MultipartFormDataStreamProvider(root);
 			try
 			{
-				var user = new ExpenseUser { Id = User.Identity.GetUserId() };
+				var user = new ExpenseUser {Id = User.Identity.GetUserId()};
 				var bill = new Bill
 				{
 					Id = Guid.NewGuid().ToString(),

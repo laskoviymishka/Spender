@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Spender.WinPhone.ViewModel;
-using Spender.WinPhone.ViewModels;
 
 namespace Spender.WinPhone.DataService.Interfaces
 {

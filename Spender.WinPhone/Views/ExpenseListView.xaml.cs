@@ -1,18 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using System;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Cimbalino.Phone.Toolkit.Services;
 using Microsoft.Phone.Controls;
 using Telerik.Windows.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Spender.WinPhone.Views
 {
@@ -23,20 +14,20 @@ namespace Spender.WinPhone.Views
 			InitializeComponent();
 		}
 
-		private void ExpandExpander(object sender, System.Windows.Input.GestureEventArgs e)
+		private void ExpandExpander(object sender, GestureEventArgs e)
 		{
-			HyperlinkButton b = sender as HyperlinkButton;
-			RadExpanderControl expander = ElementTreeHelper.FindVisualAncestor<RadExpanderControl>(b);
+			var b = sender as HyperlinkButton;
+			var expander = ElementTreeHelper.FindVisualAncestor<RadExpanderControl>(b);
 			if (expander != null)
 			{
 				expander.IsExpanded = true;
 			}
 		}
 
-		private void CollapseExpander(object sender, System.Windows.Input.GestureEventArgs e)
+		private void CollapseExpander(object sender, GestureEventArgs e)
 		{
-			HyperlinkButton b = sender as HyperlinkButton;
-			RadExpanderControl expander = ElementTreeHelper.FindVisualAncestor<RadExpanderControl>(b);
+			var b = sender as HyperlinkButton;
+			var expander = ElementTreeHelper.FindVisualAncestor<RadExpanderControl>(b);
 			if (expander != null)
 			{
 				expander.IsExpanded = false;

@@ -4,13 +4,15 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using Spender.Model.Entities;
+
 namespace Spender.Model.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using Spender.Model.Entities;
+	
 
 	#endregion
 

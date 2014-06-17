@@ -4,11 +4,13 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System.Web.Http;
+
 namespace Spender.Controllers
 {
 	#region Using
 
-	using System.Web.Http;
+	
 
 	#endregion
 

@@ -4,18 +4,20 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Spender.Model.Business;
+using Spender.Model.Entities;
+using Spender.Model.Repository;
+
 namespace Spender.Tests.Business
 {
 	#region Using
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using Moq;
-	using Spender.Model.Business;
-	using Spender.Model.Entities;
-	using Spender.Model.Repository;
+	
 
 	#endregion
 
@@ -99,7 +101,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetExpenses_without_params_should_retrun_all()
 		{
-			var result = _ExpenseBusiness.GetExpenses(_user).ToList();
+			List<Expense> result = _ExpenseBusiness.GetExpenses(_user).ToList();
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Count() == _Expenses.Count);
 		}
@@ -107,9 +109,9 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetExpenses_with_category_should_return_allTime_for_this_category()
 		{
-			var result = _ExpenseBusiness.GetExpenses(_user, _firstCategory);
+			IEnumerable<Expense> result = _ExpenseBusiness.GetExpenses(_user, _firstCategory);
 			Assert.IsNotNull(result);
-			foreach (var Expense in result)
+			foreach (Expense Expense in result)
 			{
 				Assert.IsTrue(Expense.Category == _firstCategory);
 			}
@@ -118,9 +120,10 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetExpenses_with_category_and_time_should_return_this_time_for_this_category()
 		{
-			var result = _ExpenseBusiness.GetExpenses(_user, _firstCategory, DateTime.Now.AddDays(-215), DateTime.Now);
+			IEnumerable<Expense> result = _ExpenseBusiness.GetExpenses(_user, _firstCategory, DateTime.Now.AddDays(-215),
+				DateTime.Now);
 			Assert.IsNotNull(result);
-			foreach (var Expense in result)
+			foreach (Expense Expense in result)
 			{
 				Assert.IsTrue(Expense.Date > DateTime.Now.AddDays(-215));
 				Assert.IsTrue(Expense.Date < DateTime.Now);
@@ -131,11 +134,11 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetExpenses_with_only_time_should_return_this_time_for_this_category()
 		{
-			var result = _ExpenseBusiness.GetExpenses(_user, DateTime.Now.AddDays(-215), DateTime.Now).ToList();
+			List<Expense> result = _ExpenseBusiness.GetExpenses(_user, DateTime.Now.AddDays(-215), DateTime.Now).ToList();
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Any(r => r.Category.Id == _firstCategory.Id));
 			Assert.IsTrue(result.Any(r => r.Category.Id == _secondCategory.Id));
-			foreach (var Expense in result)
+			foreach (Expense Expense in result)
 			{
 				Assert.IsTrue(Expense.Date > DateTime.Now.AddDays(-215));
 				Assert.IsTrue(Expense.Date < DateTime.Now);
@@ -145,7 +148,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnGetOnById_should_return_Expense_whith_such_id()
 		{
-			var result = _ExpenseBusiness.GetExpenseById(_user, "Test1");
+			Expense result = _ExpenseBusiness.GetExpenseById(_user, "Test1");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test1");
 		}
@@ -167,7 +170,7 @@ namespace Spender.Tests.Business
 			};
 			_ExpenseBusiness.AddExpense(Expense);
 
-			var result = _ExpenseBusiness.GetExpenseById(_user, "Test");
+			Expense result = _ExpenseBusiness.GetExpenseById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 		}
@@ -194,7 +197,7 @@ namespace Spender.Tests.Business
 			_ExpenseBusiness.AddExpense(Expense);
 			_ExpenseBusiness.AddExpense(Expense2);
 
-			var result = _ExpenseBusiness.GetExpenseById(_user, "Test");
+			Expense result = _ExpenseBusiness.GetExpenseById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 
@@ -210,7 +213,7 @@ namespace Spender.Tests.Business
 		[TestMethod]
 		public void OnRemover_with_one_should_remove_one()
 		{
-			var result = _ExpenseBusiness.GetExpenseById(_user, "Test1");
+			Expense result = _ExpenseBusiness.GetExpenseById(_user, "Test1");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test1");
 			_ExpenseBusiness.RemoveExpense(result);
@@ -241,7 +244,7 @@ namespace Spender.Tests.Business
 			list.Add(Expense);
 			list.Add(Expense2);
 			_ExpenseBusiness.AddExpense(list);
-			var result = _ExpenseBusiness.GetExpenseById(_user, "Test");
+			Expense result = _ExpenseBusiness.GetExpenseById(_user, "Test");
 			Assert.IsNotNull(result);
 			Assert.IsTrue(result.Id == "Test");
 			result = _ExpenseBusiness.GetExpenseById(_user, "Test2");
