@@ -22,13 +22,12 @@ namespace Spender.WinPhone.Views
 			var task = new PhotoChooserTask();
 			task.Completed += task_Completed;
 			task.ShowCamera = true;
-			task.PixelWidth = 1024;
-			task.PixelHeight = 768;
 			task.Show();
 		}
 
 		private void task_Completed(object sender, PhotoResult e)
 		{
+
 		}
 	}
 }

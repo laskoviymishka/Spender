@@ -45,7 +45,7 @@ namespace Spender.WinPhone.ViewModel
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<SignInViewModel>();
 			SimpleIoc.Default.Register<SignUpViewModel>();
-			SimpleIoc.Default.Register<ExpenseDateViewModel>();
+			SimpleIoc.Default.Register<HomeViewModel>();
 		}
 
 		public MainViewModel Main
@@ -63,9 +63,9 @@ namespace Spender.WinPhone.ViewModel
 			get { return ServiceLocator.Current.GetInstance<SignUpViewModel>(); }
 		}
 
-		public ExpenseDateViewModel ExpenseViewModel
+		public HomeViewModel Home
 		{
-			get { return ServiceLocator.Current.GetInstance<ExpenseDateViewModel>(); }
+			get { return ServiceLocator.Current.GetInstance<HomeViewModel>(); }
 		}
 
 		public static void Cleanup()

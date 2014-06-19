@@ -22,5 +22,14 @@ namespace Spender.WinPhone.ViewModel
 		{
 			get { return new RelayCommand(() => new NavigationService().NavigateTo("/Views/ExpenseListView.xaml")); }
 		}
+		public RelayCommand HomeCommand
+		{
+			get { return new RelayCommand(() => new NavigationService().NavigateTo("/Views/HomeView.xaml")); }
+		}
+
+		public RelayCommand LogInCommand
+		{
+			get { return new RelayCommand(() => new NavigationService().NavigateTo("/Views/LogInView.xaml")); }
+		}
 	}
 }

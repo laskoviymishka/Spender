@@ -7,7 +7,7 @@ using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Spender.WinPhone.Views
 {
-	public partial class ExpenseListView : PhoneApplicationPage
+	public partial class ExpenseListView : UserControl
 	{
 		public ExpenseListView()
 		{
@@ -34,9 +34,5 @@ namespace Spender.WinPhone.Views
 			}
 		}
 
-		private void ApplicationBarIconButton_Click(object sender, EventArgs e)
-		{
-			new NavigationService().NavigateTo("/Views/AddExpenseView.xaml");
-		}
 	}
 }

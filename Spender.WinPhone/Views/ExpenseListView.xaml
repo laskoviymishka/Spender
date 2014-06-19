@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage
+﻿<UserControl
     x:Class="Spender.WinPhone.Views.ExpenseListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,7 +12,6 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
@@ -71,12 +70,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="SPENDER" Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock x:Name="PageTitle" Text="Epxense list" Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding Items}" Margin="11,3">
@@ -186,15 +179,5 @@
         </Grid>
     </Grid>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="Assets/Images/DateTimePickerOk.png" Text="Add Expense"
-                                            Click="ApplicationBarIconButton_Click" />
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Manage category" />
-                <shell:ApplicationBarMenuItem Text="Settings" />
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 
-</phone:PhoneApplicationPage>
+</UserControl>

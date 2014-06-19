@@ -130,11 +130,11 @@
     </Compile>
     <Compile Include="Helpers\StringToUpperConverter.cs" />
     <Compile Include="Helpers\NonEmptyDateValidator.cs" />
+    <Compile Include="Model\ExpenseFormDataModel.cs" />
+    <Compile Include="Model\OptionsInfoProvider.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ExpenseFormDataModel.cs" />
-    <Compile Include="Model\OptionsInfoProvider.cs" />
     <Compile Include="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
     </Compile>
@@ -225,6 +225,7 @@
     <Reference Include="GalaSoft.MvvmLight.WP8">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\wp8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
