@@ -14,7 +14,6 @@
 
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using Spender.WinPhone.ViewModels;
 
 namespace Spender.WinPhone.ViewModel
 {
@@ -66,6 +65,11 @@ namespace Spender.WinPhone.ViewModel
 		public HomeViewModel Home
 		{
 			get { return ServiceLocator.Current.GetInstance<HomeViewModel>(); }
+		}
+
+		public ManageCategoryViewModel ManageCategory
+		{
+			get { return new ManageCategoryViewModel(); }
 		}
 
 		public static void Cleanup()

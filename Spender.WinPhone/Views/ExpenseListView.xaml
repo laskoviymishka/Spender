@@ -145,9 +145,9 @@
                                                             <ColumnDefinition Width="Auto" />
                                                             <ColumnDefinition />
                                                         </Grid.ColumnDefinitions>
-                                                        <telerikPrimitives:RadImageButton 
+                                                        <Image 
                                                             Width="62" Height="62"
-                                                            RestStateImageSource="{Binding ImageSource}"/>
+                                                            Source="{Binding ImageSource}"/>
                                                         <StackPanel Grid.Column="1">
                                                             <TextBlock Margin="12,-8,12,0" Grid.Column="1"
                                                                        Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}"

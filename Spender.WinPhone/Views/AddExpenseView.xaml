@@ -94,11 +94,11 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerOk.png"
+            <shell:ApplicationBarIconButton IconUri="/Assets/Images/Ok.png"
                                             Text="Ok"
                                             Click="ApplicationBarOkButton_Click" />
             <shell:ApplicationBarIconButton 
-                IconUri="/Assets/Images/DateTimePickerCancel.png"
+                IconUri="/Assets/Images/Cancel.png"
                 Text="Cancel"
                 Click="ApplicationBarCancelButton_OnClick"/>
         </shell:ApplicationBar>

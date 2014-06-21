@@ -15,9 +15,6 @@ namespace Spender.WinPhone.ViewModels
 		private IExpenseService _expenseService;
 		private ObservableCollection<ExpenseListViewModel> items;
 
-		/// <summary>
-		///     A collection for <see cref="ExpenseViewModel" /> objects.
-		/// </summary>
 		public ObservableCollection<ExpenseListViewModel> Items
 		{
 			get
@@ -42,9 +39,6 @@ namespace Spender.WinPhone.ViewModels
 			get { return new RelayCommand(() => _navigationService.NavigateTo("/Views/SettingsView.xaml")); }
 		}
 
-		/// <summary>
-		///     Initializes the items.
-		/// </summary>
 		private void InitializeItems()
 		{
 			_expenseService = new ExpenseService();

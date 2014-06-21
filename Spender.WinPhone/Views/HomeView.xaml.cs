@@ -28,5 +28,10 @@ namespace Spender.WinPhone.Views
 		{
 			new NavigationService().NavigateTo("/Views/ExpenseDetailsView.Xaml");
 		}
+
+		private void CategoryMenuItem_OnClick(object sender, EventArgs e)
+		{
+			new NavigationService().NavigateTo("/Views/CategoryListView.Xaml");
+		}
 	}
 }

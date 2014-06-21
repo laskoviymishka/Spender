@@ -113,9 +113,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CategoryImagePickerViewModel.cs" />
+    <Compile Include="ViewModel\CategoryImageViewModel.cs" />
     <Compile Include="ViewModel\ExpenseListViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ManageCategoryViewModel.cs" />
     <Compile Include="ViewModel\SignInViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -123,8 +126,17 @@
     <Compile Include="Helpers\MinLengthValidator.cs" />
     <Compile Include="Model\SignInDataModel.cs" />
     <Compile Include="Model\SignUpDataModel.cs" />
+    <Compile Include="Views\ManageCategoryView.xaml.cs">
+      <DependentUpon>ManageCategoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddExpenseView.xaml.cs">
       <DependentUpon>AddExpenseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoryImagePickerView.xaml.cs">
+      <DependentUpon>CategoryImagePickerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExpenseDetailsView.xaml.cs">
       <DependentUpon>ExpenseDetailsView.xaml</DependentUpon>
@@ -149,6 +161,8 @@
     <Compile Include="ViewModel\ExpenseAgregateViewModel.cs" />
     <Compile Include="ViewModel\DataItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\CategoryListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -159,7 +173,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ManageCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddExpenseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoryImagePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoryListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +222,109 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\banking\Account-Payable.png" />
+    <Content Include="Assets\banking\Accounts-Book.png" />
+    <Content Include="Assets\banking\Accounts-Receivable.png" />
+    <Content Include="Assets\banking\Agricultural-Loan.png" />
+    <Content Include="Assets\banking\ATM.png" />
+    <Content Include="Assets\banking\Bank.png" />
+    <Content Include="Assets\banking\Car-Loan.png" />
+    <Content Include="Assets\banking\Cheque.png" />
+    <Content Include="Assets\banking\Counting-Machine.png" />
+    <Content Include="Assets\banking\Customer.png" />
+    <Content Include="Assets\banking\Debit-Card.png" />
+    <Content Include="Assets\banking\Employee.png" />
+    <Content Include="Assets\banking\Home-Loan.png" />
+    <Content Include="Assets\banking\Payment-01.png" />
+    <Content Include="Assets\banking\Payments.png" />
+    <Content Include="Assets\banking\Safety-Box-01.png" />
+    <Content Include="Assets\banking\Safety-Box-02.png" />
+    <Content Include="Assets\banking\Scanner.png" />
+    <Content Include="Assets\banking\Telephone.png" />
+    <Content Include="Assets\emotions\Angel.png" />
+    <Content Include="Assets\emotions\Angry.png" />
+    <Content Include="Assets\emotions\Cheeky.png" />
+    <Content Include="Assets\emotions\Confused.png" />
+    <Content Include="Assets\emotions\Cool.png" />
+    <Content Include="Assets\emotions\Cry.png" />
+    <Content Include="Assets\emotions\Devil.png" />
+    <Content Include="Assets\emotions\Kiss.png" />
+    <Content Include="Assets\emotions\Laugh.png" />
+    <Content Include="Assets\emotions\Love.png" />
+    <Content Include="Assets\emotions\Sad.png" />
+    <Content Include="Assets\emotions\Sleepy.png" />
+    <Content Include="Assets\emotions\Smile.png" />
+    <Content Include="Assets\emotions\Speechless.png" />
+    <Content Include="Assets\emotions\Surprised.png" />
+    <Content Include="Assets\emotions\Wink.png" />
+    <Content Include="Assets\emotions\Worried.png" />
+    <Content Include="Assets\food\Beverage-Beer-01.png" />
+    <Content Include="Assets\food\Beverage-Beer-02.png" />
+    <Content Include="Assets\food\Beverage-Coffee-01.png" />
+    <Content Include="Assets\food\Beverage-Coffee-02.png" />
+    <Content Include="Assets\food\Beverage-Juice-01.png" />
+    <Content Include="Assets\food\Beverage-Juice-03.png" />
+    <Content Include="Assets\food\Beverage-Milk-01.png" />
+    <Content Include="Assets\food\Cheese-02.png" />
+    <Content Include="Assets\food\Chicken-02.png" />
+    <Content Include="Assets\food\Chocolate-03.png" />
+    <Content Include="Assets\food\Fruit-Banana-02.png" />
+    <Content Include="Assets\food\Meat-Chicken-Kebab.png" />
+    <Content Include="Assets\food\Snack-Doughnut.png" />
+    <Content Include="Assets\food\Snack-French-Fries.png" />
+    <Content Include="Assets\food\Water-Bottle.png" />
+    <Content Include="Assets\fun\IPod.png" />
+    <Content Include="Assets\fun\Joystick.png" />
+    <Content Include="Assets\fun\Laptop-02.png" />
+    <Content Include="Assets\fun\Modem-Wireless.png" />
+    <Content Include="Assets\fun\Mouse.png" />
+    <Content Include="Assets\house\Modem-Wireless.png" />
+    <Content Include="Assets\house\Office-01.png" />
+    <Content Include="Assets\house\Tv-Remote.png" />
+    <Content Include="Assets\house\University.png" />
+    <Content Include="Assets\house\Washing-Machine.png" />
+    <Content Include="Assets\medical\Ambulance.png" />
+    <Content Include="Assets\medical\Dental.png" />
+    <Content Include="Assets\medical\Doctor.png" />
+    <Content Include="Assets\medical\First-Aid-Kit-02.png" />
+    <Content Include="Assets\medical\Hospital-Lab.png" />
+    <Content Include="Assets\medical\Hospital.png" />
+    <Content Include="Assets\medical\Insurance-Bill.png" />
+    <Content Include="Assets\medical\Medicine.png" />
+    <Content Include="Assets\medical\Wheelchair.png" />
+    <Content Include="Assets\navigation\Add-To-Cart.png" />
+    <Content Include="Assets\navigation\Auction.png" />
+    <Content Include="Assets\navigation\Bar-Chart.png" />
+    <Content Include="Assets\navigation\Bid-02.png" />
+    <Content Include="Assets\navigation\Bill.png" />
+    <Content Include="Assets\navigation\Book-Add.png" />
+    <Content Include="Assets\navigation\Book-Delete.png" />
+    <Content Include="Assets\navigation\Book-Settings.png" />
+    <Content Include="Assets\navigation\Briefcase-Standard.png" />
+    <Content Include="Assets\navigation\Calendar-Date.png" />
+    <Content Include="Assets\navigation\Cart-Delete.png" />
+    <Content Include="Assets\navigation\Data-Access-Restricted.png" />
+    <Content Include="Assets\navigation\Data-Add.png" />
+    <Content Include="Assets\navigation\Data-Connect.png" />
+    <Content Include="Assets\navigation\Data-Delete.png" />
+    <Content Include="Assets\navigation\Graph-01.png" />
+    <Content Include="Assets\navigation\Graph-02.png" />
+    <Content Include="Assets\navigation\Graph-03.png" />
+    <Content Include="Assets\navigation\Identity-Card.png" />
+    <Content Include="Assets\navigation\Report-Delete.png" />
+    <Content Include="Assets\navigation\Report-Editor.png" />
+    <Content Include="Assets\navigation\Report-Next.png" />
+    <Content Include="Assets\navigation\Upload.png" />
+    <Content Include="Assets\sport\Horse-Racing.png" />
+    <Content Include="Assets\sport\Playing-Cards.png" />
+    <Content Include="Assets\sport\Shooting.png" />
+    <Content Include="Assets\sport\Skating.png" />
+    <Content Include="Assets\sport\Skiing.png" />
+    <Content Include="Assets\sport\Snooker-Ball.png" />
+    <Content Include="Assets\sport\Sports-Jersey.png" />
+    <Content Include="Assets\sport\Sports-Shoe.png" />
+    <Content Include="Assets\sport\Swimming.png" />
+    <Content Include="Assets\sport\Weight-Lifting.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -213,8 +342,36 @@
     </Content>
     <Content Include="Assets\Images\CompanyLogo.png" />
     <Content Include="Assets\Images\FrameThumbnail.png" />
-    <Content Include="Assets\Images\DateTimePickerCancel.png" />
-    <Content Include="Assets\Images\DateTimePickerOk.png" />
+    <Content Include="Assets\Images\Cancel.png" />
+    <Content Include="Assets\Images\Ok.png" />
+    <Content Include="Assets\transport\Aeroplane.png" />
+    <Content Include="Assets\transport\Anchor.png" />
+    <Content Include="Assets\transport\Bike-Racing-01.png" />
+    <Content Include="Assets\transport\Black-Board.png" />
+    <Content Include="Assets\transport\Car-Racing.png" />
+    <Content Include="Assets\transport\Car.png" />
+    <Content Include="Assets\transport\Charging-Station.png" />
+    <Content Include="Assets\transport\Cycle-Race.png" />
+    <Content Include="Assets\transport\Engine.png" />
+    <Content Include="Assets\transport\Fuel.png" />
+    <Content Include="Assets\transport\Garage.png" />
+    <Content Include="Assets\transport\Scooter-01.png" />
+    <Content Include="Assets\transport\Scooter-02.png" />
+    <Content Include="Assets\transport\Scooter.png" />
+    <Content Include="Assets\transport\Spaceship.png" />
+    <Content Include="Assets\transport\Transport-School-Bus.png" />
+    <Content Include="Assets\transport\Transport-Truck.png" />
+    <Content Include="Assets\transport\Transport-Van%281%29.png" />
+    <Content Include="Assets\transport\Transport-Van.png" />
+    <Content Include="Assets\transport\Van.png" />
+    <Content Include="Assets\wear\Hat.png" />
+    <Content Include="Assets\wear\Ladies Wear.png" />
+    <Content Include="Assets\wear\Men-Shirt-03.png" />
+    <Content Include="Assets\wear\Men-Shorts-01.png" />
+    <Content Include="Assets\wear\Men-Shorts-02.png" />
+    <Content Include="Assets\wear\Men-Suit.png" />
+    <Content Include="Assets\wear\Men-T-Shirt-01.png" />
+    <Content Include="Assets\wear\Socks.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -242,6 +399,7 @@
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Behaviors, Version=2014.1.226.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Input, Version=2014.1.226.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Primitives, Version=2014.1.226.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Core, Version=2014.1.226.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -251,6 +409,9 @@
       <Project>{df7da4d6-2beb-4052-83de-4c283bedd484}</Project>
       <Name>Spender.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

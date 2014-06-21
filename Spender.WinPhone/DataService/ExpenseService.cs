@@ -31,7 +31,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} : {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note =  item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location
@@ -46,7 +46,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note = item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location
@@ -61,7 +61,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note = item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location
@@ -76,7 +76,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note = item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location
@@ -91,7 +91,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note = item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location
@@ -106,7 +106,7 @@ namespace Spender.WinPhone.DataService
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
-						ImageSource = new Uri(item.Category.Image),
+						ImageSource = new Uri(item.Category.Image, UriKind.RelativeOrAbsolute),
 						Note = item.Note,
 						CheckImageSource = item.Image,
 						Location = item.Location

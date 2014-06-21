@@ -1,0 +1,60 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Spender.WinPhone.Views.ManageCategoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+     DataContext="{Binding ManageCategory, Source={StaticResource Locator}}"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="SPENDER" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Category" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Category Name"></TextBlock>
+            <TextBox Text="{Binding Title, Mode=TwoWay}"></TextBox>
+            <TextBlock Text="Category Type"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="Expense" IsChecked="{Binding IsExpense, Mode=TwoWay}"></RadioButton>
+                <RadioButton Content="Income" IsChecked="{Binding IsIncome, Mode=TwoWay}"></RadioButton>
+            </StackPanel>
+            <TextBlock>Category icon</TextBlock>
+            <telerikPrimitives:RadImageButton 
+                Width="256" Height="256"
+                RestStateImageSource="{Binding ImageSource}"
+                Command="{Binding PickImage}"/>
+        </StackPanel>
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+        </Grid>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/Images/Ok.png"
+                                            Text="Ok"
+                                            Click="ApplicationBarOkButton_Click" />
+            <shell:ApplicationBarIconButton 
+                IconUri="/Assets/Images/Cancel.png"
+                Text="Cancel"
+                Click="ApplicationBarCancelButton_OnClick"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

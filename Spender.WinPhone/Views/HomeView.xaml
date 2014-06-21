@@ -41,7 +41,7 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/Images/DateTimePickerOk.png" Text="Add Bill"
                                             Click="ApplicationBarIconButton_Click" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Manage category" />
+                <shell:ApplicationBarMenuItem Text="Manage category" Click="CategoryMenuItem_OnClick"/>
                 <shell:ApplicationBarMenuItem Text="Settings" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
