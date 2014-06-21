@@ -4,6 +4,8 @@
 // // </copyright>
 // // -----------------------------------------------------------------------
 
+using Spender.Common.Entities;
+
 namespace Spender.Model.Entities
 {
 
@@ -14,7 +16,7 @@ namespace Spender.Model.Entities
 	public class KnownLocation : IEntity
 	{
 		public string Name { get; set; }
-		public string Location { get; set; }
+		public Location Location { get; set; }
 		public string Id { get; set; }
 	}
 }

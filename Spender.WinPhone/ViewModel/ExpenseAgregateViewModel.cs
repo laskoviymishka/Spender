@@ -9,16 +9,16 @@ using Telerik.Windows.Controls;
 
 namespace Spender.WinPhone.ViewModels
 {
-	public class ExpenseDateViewModel : ViewModelBase
+	public class ExpenseAgregateViewModel : ViewModelBase
 	{
 		private readonly INavigationService _navigationService = new NavigationService();
 		private IExpenseService _expenseService;
-		private ObservableCollection<ExpenseListItemViewModel> items;
+		private ObservableCollection<ExpenseListViewModel> items;
 
 		/// <summary>
-		///     A collection for <see cref="ExpenseItemViewModel" /> objects.
+		///     A collection for <see cref="ExpenseViewModel" /> objects.
 		/// </summary>
-		public ObservableCollection<ExpenseListItemViewModel> Items
+		public ObservableCollection<ExpenseListViewModel> Items
 		{
 			get
 			{
@@ -48,7 +48,7 @@ namespace Spender.WinPhone.ViewModels
 		private void InitializeItems()
 		{
 			_expenseService = new ExpenseService();
-			items = new ObservableCollection<ExpenseListItemViewModel>(_expenseService.GenerateExpenseList());
+			items = new ObservableCollection<ExpenseListViewModel>(_expenseService.GenerateExpenseList());
 		}
 
 		public void AddExpense(object sender, EventArgs e)

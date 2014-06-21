@@ -1,19 +1,18 @@
 ﻿using System;
+using Spender.Common.Entities;
 using Telerik.Windows.Controls;
 
 namespace Spender.WinPhone.ViewModels
 {
-	public class ExpenseItemViewModel : ViewModelBase
+	public class ExpenseViewModel : ViewModelBase
 	{
+		private string _note;
 		private string group;
 		private Uri imageSource;
 		private Uri imageThumbnailSource;
 		private string information;
 		private string title;
 
-		/// <summary>
-		///     Gets or sets the image source.
-		/// </summary>
 		public Uri ImageSource
 		{
 			get { return imageSource; }
@@ -27,9 +26,6 @@ namespace Spender.WinPhone.ViewModels
 			}
 		}
 
-		/// <summary>
-		///     Gets or sets the image thumbnail source.
-		/// </summary>
 		public Uri ImageThumbnailSource
 		{
 			get { return imageThumbnailSource; }
@@ -43,9 +39,6 @@ namespace Spender.WinPhone.ViewModels
 			}
 		}
 
-		/// <summary>
-		///     Gets or sets the title.
-		/// </summary>
 		public string Title
 		{
 			get { return title; }
@@ -59,9 +52,6 @@ namespace Spender.WinPhone.ViewModels
 			}
 		}
 
-		/// <summary>
-		///     Gets or sets the information.
-		/// </summary>
 		public string Information
 		{
 			get { return information; }
@@ -75,9 +65,6 @@ namespace Spender.WinPhone.ViewModels
 			}
 		}
 
-		/// <summary>
-		///     Gets or sets the group.
-		/// </summary>
 		public string Group
 		{
 			get { return @group; }
@@ -91,27 +78,30 @@ namespace Spender.WinPhone.ViewModels
 			}
 		}
 
-		/// <summary>
-		///     Returns a <see cref="System.String" /> that represents this instance.
-		/// </summary>
-		/// <returns>
-		///     A <see cref="System.String" /> that represents this instance.
-		/// </returns>
+		public string Note
+		{
+			get { return _note; }
+			set
+			{
+				if (_note != value)
+				{
+					_note = value;
+					OnPropertyChanged("Note");
+				}
+			}
+		}
+
+		public string CheckImageSource { get; set; }
+		public Location Location { get; set; }
+
 		public override string ToString()
 		{
 			return title;
 		}
 
-		/// <summary>
-		///     Determines whether the specified <see cref="System.Object" /> is equal to this instance.
-		/// </summary>
-		/// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
-		/// <returns>
-		///     <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
-		/// </returns>
 		public override bool Equals(object obj)
 		{
-			var typedObject = obj as ExpenseItemViewModel;
+			var typedObject = obj as ExpenseViewModel;
 			if (typedObject == null)
 			{
 				return false;
@@ -119,12 +109,6 @@ namespace Spender.WinPhone.ViewModels
 			return Title == typedObject.Title && Information == typedObject.Information;
 		}
 
-		/// <summary>
-		///     Returns a hash code for this instance.
-		/// </summary>
-		/// <returns>
-		///     A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
-		/// </returns>
 		public override int GetHashCode()
 		{
 			return Title.GetHashCode() ^ Information.GetHashCode();

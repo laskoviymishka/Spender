@@ -48,6 +48,7 @@
     <Compile Include="Entities\Income.cs" />
     <Compile Include="Entities\IUser.cs" />
     <Compile Include="Entities\KnownLocation.cs" />
+    <Compile Include="Entities\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

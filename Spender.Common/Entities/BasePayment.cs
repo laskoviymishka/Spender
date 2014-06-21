@@ -22,7 +22,7 @@ namespace Spender.Model.Entities
 		public decimal Amount { get; set; }
 		public DateTime Date { get; set; }
 		public Category Category { get; set; }
-		public string Location { get; set; }
+		public Location Location { get; set; }
 		public IPclUser User { get; set; }
 		public string Image { get; set; }
 		public string Id { get; set; }

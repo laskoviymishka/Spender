@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataService\ExpenseService.cs" />
+    <Compile Include="DataService\StaticDataHolder.cs" />
     <Compile Include="Model\ExpenseUser.cs" />
     <Compile Include="DataService\Interfaces\IAtuthorizationService.cs" />
     <Compile Include="DataService\Interfaces\IExpenseService.cs" />
@@ -112,7 +113,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ExpenseListItemViewModel.cs" />
+    <Compile Include="ViewModel\ExpenseListViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SignInViewModel.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Model\SignUpDataModel.cs" />
     <Compile Include="Views\AddExpenseView.xaml.cs">
       <DependentUpon>AddExpenseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpenseDetailsView.xaml.cs">
+      <DependentUpon>ExpenseDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExpenseListView.xaml.cs">
       <DependentUpon>ExpenseListView.xaml</DependentUpon>
@@ -141,8 +145,10 @@
     <Compile Include="Views\SignUpView.xaml.cs">
       <DependentUpon>SignUpView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ExpenseItemViewModel.cs" />
-    <Compile Include="ViewModel\ExpenseDateViewModel.cs" />
+    <Compile Include="ViewModel\ExpenseViewModel.cs" />
+    <Compile Include="ViewModel\ExpenseAgregateViewModel.cs" />
+    <Compile Include="ViewModel\DataItemViewModel.cs" />
+    <Compile Include="ViewModel\MainDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -154,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddExpenseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpenseDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

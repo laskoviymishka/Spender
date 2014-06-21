@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Spender.WinPhone.DataService;
 using Telerik.Windows.Controls;
 
 namespace Spender.WinPhone.Views.SampleData
@@ -8,7 +10,10 @@ namespace Spender.WinPhone.Views.SampleData
 	{
 		public IEnumerable ItemsSource
 		{
-			get { return new List<string> {"Test1", "Test2"}; }
+			get
+			{
+				return StaticDataHolder.Categories.Select(category => category.Name).ToList();
+			}
 		}
 
 		public IGenericListValueConverter ValueConverter

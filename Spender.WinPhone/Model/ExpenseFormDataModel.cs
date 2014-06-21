@@ -11,6 +11,8 @@ namespace Spender.WinPhone.Views.Models
 
 		public string Name { get; set; }
 
+		public string Note { get; set; }
+
 		public DateTime? Date { get; set; }
 
 		public decimal Amount { get; set; }

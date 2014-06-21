@@ -2,6 +2,9 @@
 using System.Windows.Controls;
 using Cimbalino.Phone.Toolkit.Services;
 using Microsoft.Phone.Controls;
+using Spender.Model.Entities;
+using Spender.WinPhone.DataService;
+using Spender.WinPhone.ViewModels;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -34,5 +37,15 @@ namespace Spender.WinPhone.Views
 			}
 		}
 
+		private void ExpenseItem_OnTap(object sender, GestureEventArgs e)
+		{
+			new NavigationService().NavigateTo("/Views/ExpenseDetailsView.Xaml");
+		}
+
+		private void RadDataBoundListBox_OnItemTap(object sender, ListBoxItemTapEventArgs e)
+		{
+			StaticDataHolder.SelectedExpense = e.Item.DataContext as ExpenseViewModel;
+			new NavigationService().NavigateTo("/Views/ExpenseDetailsView.Xaml");
+		}
 	}
 }

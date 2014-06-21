@@ -9,89 +9,107 @@ namespace Spender.WinPhone.DataService
 {
 	public class ExpenseService : IExpenseService
 	{
-		public IEnumerable<ExpenseListItemViewModel> GenerateExpenseList()
+		public IEnumerable<ExpenseListViewModel> GenerateExpenseList()
 		{
-			var result = new List<ExpenseListItemViewModel>();
+			var result = new List<ExpenseListViewModel>();
 
-			var dayElementa = new ExpenseListItemViewModel("today");
-			var yesterdayElementa = new ExpenseListItemViewModel("yerstoday");
-			var weekElementa = new ExpenseListItemViewModel("week");
-			var monthElementa = new ExpenseListItemViewModel("month");
-			var yearElementa = new ExpenseListItemViewModel("year");
-			var allElementa = new ExpenseListItemViewModel("all");
+			var dayElementa = new ExpenseListViewModel("today");
+			var yesterdayElementa = new ExpenseListViewModel("yerstoday");
+			var weekElementa = new ExpenseListViewModel("week");
+			var monthElementa = new ExpenseListViewModel("month");
+			var yearElementa = new ExpenseListViewModel("year");
+			var allElementa = new ExpenseListViewModel("all");
 
 
-			foreach (Expense item in GetMockExpenses())
+			foreach (Expense item in StaticDataHolder.Expenses)
 			{
 				if (item.Date >= DateTime.Now.AddDays(-1))
 				{
 					dayElementa.Total += item.Amount;
-					dayElementa.Items.Add(new ExpenseItemViewModel
+					dayElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
-						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
+						Information = string.Format("{0} : {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note =  item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 
 				if (item.Date >= DateTime.Now.AddDays(-2))
 				{
 					yesterdayElementa.Total += item.Amount;
-					yesterdayElementa.Items.Add(new ExpenseItemViewModel
+					yesterdayElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note = item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 
 				if (item.Date >= DateTime.Now.AddDays(-7))
 				{
 					weekElementa.Total += item.Amount;
-					weekElementa.Items.Add(new ExpenseItemViewModel
+					weekElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note = item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 
 				if (item.Date >= DateTime.Now.AddDays(-31))
 				{
 					monthElementa.Total += item.Amount;
-					monthElementa.Items.Add(new ExpenseItemViewModel
+					monthElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note = item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 
 				if (item.Date >= DateTime.Now.AddDays(-365))
 				{
 					yearElementa.Total += item.Amount;
-					yearElementa.Items.Add(new ExpenseItemViewModel
+					yearElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note = item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 
 				if (item.Date > DateTime.Now.AddDays(-365))
 				{
 					allElementa.Total += item.Amount;
-					allElementa.Items.Add(new ExpenseItemViewModel
+					allElementa.Items.Add(new ExpenseViewModel
 					{
 						Title = item.Name,
 						Group = item.Category.Name,
 						Information = string.Format("{0} = {1}", item.Date.ToShortDateString(), item.Amount),
 						ImageSource = new Uri(item.Category.Image),
+						Note = item.Note,
+						CheckImageSource = item.Image,
+						Location = item.Location
 					});
 				}
 			}
@@ -105,115 +123,15 @@ namespace Spender.WinPhone.DataService
 			return result;
 		}
 
-		public void UpdateExpense()
+		public void UpdateExpense(Expense expense)
 		{
-			throw new NotImplementedException();
+			StaticDataHolder.Expenses.RemoveAll(e => e.Id == expense.Id);
+			StaticDataHolder.Expenses.Add(expense);
 		}
 
-		public void AddExpense()
+		public void AddExpense(Expense expense)
 		{
-			throw new NotImplementedException();
-		}
-
-		private List<Expense> GetMockExpenses()
-		{
-			var _user = new ExpenseUser {Id = "1"};
-			var _firstCategory = new Category
-			{
-				Id = "1",
-				Name = "Test",
-				Type = CategoryType.Expense,
-				Image = @"http://cdn0.iconfinder.com/data/icons/simple-seo-and-internet-icons/512/links_building_add-512.png"
-			};
-			var _secondCategory = new Category
-			{
-				Id = "2",
-				Name = "Test2",
-				Type = CategoryType.Expense,
-				Image = @"https://cdn4.iconfinder.com/data/icons/eldorado-mobile/40/link_3-512.png"
-			};
-			var result = new List<Expense>();
-			result.Add(new Expense
-			{
-				Id = "1",
-				Category = _firstCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now
-			});
-			result.Add(new Expense
-			{
-				Id = "11",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 12,
-				User = _user,
-				Date = DateTime.Now
-			});
-			result.Add(new Expense
-			{
-				Id = "21",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-1)
-			});
-			result.Add(new Expense
-			{
-				Id = "21",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 12,
-				User = _user,
-				Date = DateTime.Now.AddDays(-1)
-			});
-			result.Add(new Expense
-			{
-				Id = "2",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-5)
-			});
-			result.Add(new Expense
-			{
-				Id = "3",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-25)
-			});
-			result.Add(new Expense
-			{
-				Id = "4",
-				Name = "test expense",
-				Category = _secondCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-55)
-			});
-			result.Add(new Expense
-			{
-				Id = "5",
-				Name = "test expense",
-				Category = _secondCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-254)
-			});
-			result.Add(new Expense
-			{
-				Id = "6",
-				Name = "test expense",
-				Category = _firstCategory,
-				Amount = 10,
-				User = _user,
-				Date = DateTime.Now.AddDays(-3)
-			});
-			return result;
+			StaticDataHolder.Expenses.Add(expense);
 		}
 	}
 }
