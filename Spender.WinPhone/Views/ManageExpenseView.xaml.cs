@@ -12,21 +12,21 @@ using Spender.WinPhone.Views.Models;
 
 namespace Spender.WinPhone.Views
 {
-	public partial class AddExpenseView : PhoneApplicationPage
+	public partial class ManageExpenseView : PhoneApplicationPage
 	{
 		private readonly INavigationService _navigationService = new NavigationService();
 		private Stream _photoStream;
 		private string fileName;
 
-		public AddExpenseView()
+		public ManageExpenseView()
 		{
 			InitializeComponent();
 		}
 
 		private void ApplicationBarOkButton_Click(object sender, EventArgs e)
 		{
-			DataForm.Commit();
-			var currentItem = (ExpenseFormDataModel)DataForm.CurrentItem;
+			//DataForm.Commit();
+			var currentItem = new ExpenseFormDataModel();//(ExpenseFormDataModel)DataForm.CurrentItem;
 			var expnse = new Expense
 			{
 				Image = fileName,
@@ -41,7 +41,7 @@ namespace Spender.WinPhone.Views
 			_navigationService.GoBack();
 		}
 
-		private void btnNewPhoto_Tap(object sender, GestureEventArgs e)
+		private void btnNewPhoto_Tap(object sender, Object e)
 		{
 			var task = new PhotoChooserTask();
 			task.Completed += task_Completed;
@@ -52,12 +52,15 @@ namespace Spender.WinPhone.Views
 		private async void task_Completed(object sender, PhotoResult e)
 		{
 			_photoStream = e.ChosenPhoto;
-			fileName = Guid.NewGuid().ToString() + ".jpg";
-			StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-			StorageFile storageFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-			using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
+			if (_photoStream != null)
 			{
-				await _photoStream.CopyToAsync(outputStream);
+				fileName = Guid.NewGuid().ToString() + ".jpg";
+				StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+				StorageFile storageFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+				using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
+				{
+					await _photoStream.CopyToAsync(outputStream);
+				}
 			}
 		}
 

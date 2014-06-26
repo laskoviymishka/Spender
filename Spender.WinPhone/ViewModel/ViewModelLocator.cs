@@ -72,6 +72,11 @@ namespace Spender.WinPhone.ViewModel
 			get { return new ManageCategoryViewModel(); }
 		}
 
+		public ManageExpenseViewModel ManageExpense
+		{
+			get { return new ManageExpenseViewModel(); }
+		}
+
 		public static void Cleanup()
 		{
 			// TODO Clear the ViewModels

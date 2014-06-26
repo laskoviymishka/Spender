@@ -19,19 +19,14 @@ namespace Spender.WinPhone.Views
 			InitializeComponent();
 		}
 
-		private void ApplicationBarIconButton_Click(object sender, EventArgs e)
-		{
-			new NavigationService().NavigateTo("/Views/AddExpenseView.xaml");
-		}
-
-		private void ExpenseItem_OnTap(object sender, GestureEventArgs e)
-		{
-			new NavigationService().NavigateTo("/Views/ExpenseDetailsView.Xaml");
-		}
-
 		private void CategoryMenuItem_OnClick(object sender, EventArgs e)
 		{
 			new NavigationService().NavigateTo("/Views/CategoryListView.Xaml");
+		}
+
+		private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+		{
+			new NavigationService().NavigateTo("/Views/ManageExpenseView.xaml");
 		}
 	}
 }

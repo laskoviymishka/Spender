@@ -30,10 +30,10 @@ namespace Spender.WinPhone.Views
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
-			DataContext = StaticDataHolder.SelectedExpense;
+			DataContext = StaticDataHolder.SelectedExpenseViewModel;
 		}
 
-		private void Option1_Tap(object sender, GestureEventArgs e)
+		private void Option1_Tap(object sender, Object e)
 		{
 			this.NoteViewer.Visibility = System.Windows.Visibility.Visible;
 			this.Option1Arrow.Visibility = System.Windows.Visibility.Visible;
@@ -43,7 +43,7 @@ namespace Spender.WinPhone.Views
 			this.Option3Arrow.Visibility = System.Windows.Visibility.Collapsed;
 		}
 
-		private void Option2_Tap(object sender, GestureEventArgs e)
+		private void Option2_Tap(object sender, Object e)
 		{
 			this.NoteViewer.Visibility = System.Windows.Visibility.Collapsed;
 			this.Option1Arrow.Visibility = System.Windows.Visibility.Collapsed;
@@ -53,7 +53,7 @@ namespace Spender.WinPhone.Views
 			this.Option3Arrow.Visibility = System.Windows.Visibility.Collapsed;
 		}
 
-		private void Option3_Tap(object sender, GestureEventArgs e)
+		private void Option3_Tap(object sender, Object e)
 		{
 			this.NoteViewer.Visibility = System.Windows.Visibility.Collapsed;
 			this.Option1Arrow.Visibility = System.Windows.Visibility.Collapsed;

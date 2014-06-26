@@ -44,7 +44,7 @@ namespace Spender.WinPhone.Views
 
 		private void RadDataBoundListBox_OnItemTap(object sender, ListBoxItemTapEventArgs e)
 		{
-			StaticDataHolder.SelectedExpense = e.Item.DataContext as ExpenseViewModel;
+			StaticDataHolder.SelectedExpenseViewModel = e.Item.DataContext as ExpenseViewModel;
 			new NavigationService().NavigateTo("/Views/ExpenseDetailsView.Xaml");
 		}
 	}

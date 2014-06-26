@@ -40,6 +40,40 @@ namespace Spender.WinPhone.ViewModel
 					new CategoryImageViewModel{ImageSource = @"\Assets\banking\Debit-Card.png"},
 				}
 			});
+			items.Add(new CategoryImageListViewModel()
+			{
+				Title = "Food",
+				Items = new ObservableCollection<CategoryImageViewModel>
+				{
+					new CategoryImageViewModel{ImageSource = @"\Assets\food\Beverage-Beer-01.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\food\Beverage-Beer-01.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\food\Beverage-Coffee-01.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\food\Beverage-Coffee-02.png"},
+				}
+			});
+			items.Add(new CategoryImageListViewModel()
+			{
+				Title = "Fun",
+				Items = new ObservableCollection<CategoryImageViewModel>
+				{
+					new CategoryImageViewModel{ImageSource = @"\Assets\fun\IPod.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\fun\Joystick.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\fun\laptop-02.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\fun\Mouse.png"},
+				}
+			});
+			items.Add(new CategoryImageListViewModel()
+			{
+				Title = "House",
+				Items = new ObservableCollection<CategoryImageViewModel>
+				{
+					new CategoryImageViewModel{ImageSource = @"\Assets\house\Modem-Wireless.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\house\tv-remote.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\house\university.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\house\washing-machine.png"},
+					new CategoryImageViewModel{ImageSource = @"\Assets\house\office-01.png"},
+				}
+			});
 		}
 	}
 

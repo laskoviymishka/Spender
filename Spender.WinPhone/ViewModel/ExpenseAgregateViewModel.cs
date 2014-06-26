@@ -47,7 +47,7 @@ namespace Spender.WinPhone.ViewModels
 
 		public void AddExpense(object sender, EventArgs e)
 		{
-			_navigationService.NavigateTo("/Views/AddExpenseView.xaml");
+			_navigationService.NavigateTo("/Views/ManageExpenseView.xaml");
 		}
 	}
 }
