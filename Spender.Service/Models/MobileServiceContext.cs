@@ -20,7 +20,7 @@ namespace Spender.Service.Models
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Bill> Bills { get; set; }
 		public DbSet<Location> Locations { get; set; }
-		public DbSet<PaymentTransaction> Transactions { get; set; }
+		public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
 		public DbSet<TransactionHolder> TransactionHolders { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -35,8 +35,6 @@ namespace Spender.Service.Models
 				new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
 					"ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
 		}
-
-		public System.Data.Entity.DbSet<Spender.Service.DataObjects.PaymentTransaction> PaymentTransactions { get; set; }
 	}
 
 }

@@ -186,6 +186,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\MobileServiceInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
