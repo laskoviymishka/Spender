@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spender", "Spender\Spender.csproj", "{704B9BC4-847E-47AF-9E1E-C8965857B964}"
 EndProject
@@ -12,6 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spender.WinPhone", "Spender.WinPhone\Spender.WinPhone.csproj", "{96A6A80A-8FE7-4719-A6D2-4E49772DE4AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spender.Common", "Spender.Common\Spender.Common.csproj", "{DF7DA4D6-2BEB-4052-83DE-4C283BEDD484}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{CA28F59B-AEFE-45D5-ADE1-BA3B7837EABE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{7D6F5182-4FC1-471A-9721-4D0778B6E915}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{726534F6-3BFE-4FDD-A015-56FFDABED958}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D56CB76E-F084-4D96-A85E-1A2D0B616CC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,5 +84,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{704B9BC4-847E-47AF-9E1E-C8965857B964} = {CA28F59B-AEFE-45D5-ADE1-BA3B7837EABE}
+		{C543E056-E987-4527-9BCB-F14CFA66FFE7} = {726534F6-3BFE-4FDD-A015-56FFDABED958}
+		{A90D45AD-18BD-4F4B-9FF7-D5EF3784A287} = {D56CB76E-F084-4D96-A85E-1A2D0B616CC2}
+		{96A6A80A-8FE7-4719-A6D2-4E49772DE4AA} = {7D6F5182-4FC1-471A-9721-4D0778B6E915}
+		{DF7DA4D6-2BEB-4052-83DE-4C283BEDD484} = {D56CB76E-F084-4D96-A85E-1A2D0B616CC2}
 	EndGlobalSection
 EndGlobal
