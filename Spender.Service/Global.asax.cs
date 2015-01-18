@@ -1,9 +1,12 @@
-﻿using System.Web.Http;
-using System.Web.Routing;
+﻿#region usings
+
+using System.Web;
+
+#endregion
 
 namespace Spender.Service
 {
-	public class WebApiApplication : System.Web.HttpApplication
+	public class WebApiApplication : HttpApplication
 	{
 		protected void Application_Start()
 		{

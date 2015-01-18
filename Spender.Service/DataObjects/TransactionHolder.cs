@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿#region usings
+
+using System.Collections.Generic;
 using Microsoft.WindowsAzure.Mobile.Service;
+
+#endregion
 
 namespace Spender.Service.DataObjects
 {

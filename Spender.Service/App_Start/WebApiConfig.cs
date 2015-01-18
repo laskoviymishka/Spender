@@ -1,5 +1,9 @@
-﻿using System.Data.Entity;
+﻿#region usings
+
+using System.Data.Entity;
 using Microsoft.WindowsAzure.Mobile.Service;
+
+#endregion
 
 namespace Spender.Service
 {

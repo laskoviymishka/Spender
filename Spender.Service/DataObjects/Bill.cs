@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using Microsoft.WindowsAzure.Mobile.Service;
+
+#endregion
 
 namespace Spender.Service.DataObjects
 {

@@ -228,7 +228,7 @@
     <Content Include="Performance\Microsoft.ServiceBus.MessagingPerformanceCounters.man" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\mobile-TestMobileService1-Tserakhau.pubxml" />
+    <None Include="Properties\PublishProfiles\mobile-spender-mobile-service-dev.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

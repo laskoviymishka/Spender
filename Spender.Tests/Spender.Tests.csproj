@@ -124,10 +124,6 @@
       <Project>{a90d45ad-18bd-4f4b-9ff7-d5ef3784a287}</Project>
       <Name>Spender.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spender\Spender.csproj">
-      <Project>{704B9BC4-847E-47AF-9E1E-C8965857B964}</Project>
-      <Name>Spender</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,13 +1,16 @@
-﻿using System.Data.Entity;
+﻿#region usings
+
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using Microsoft.WindowsAzure.Mobile.Service;
 using Microsoft.WindowsAzure.Mobile.Service.Tables;
 using Spender.Service.DataObjects;
 
+#endregion
+
 namespace Spender.Service.Models
 {
-
 	public class MobileServiceContext : DbContext
 	{
 		private const string connectionStringName = "Name=MS_TableConnectionString";
@@ -36,5 +39,4 @@ namespace Spender.Service.Models
 					"ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
 		}
 	}
-
 }

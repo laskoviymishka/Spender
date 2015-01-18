@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿#region usings
+
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -6,6 +8,8 @@ using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
 using Spender.Service.DataObjects;
 using Spender.Service.Models;
+
+#endregion
 
 namespace Spender.Service.Controllers
 {
@@ -40,7 +44,7 @@ namespace Spender.Service.Controllers
 		public async Task<IHttpActionResult> PostTransactionHolder(TransactionHolder item)
 		{
 			TransactionHolder current = await InsertAsync(item);
-			return CreatedAtRoute("Tables", new { id = current.Id }, current);
+			return CreatedAtRoute("Tables", new {id = current.Id}, current);
 		}
 
 		// DELETE tables/TransactionHolder/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -48,6 +52,5 @@ namespace Spender.Service.Controllers
 		{
 			return DeleteAsync(id);
 		}
-
 	}
 }

@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿#region usings
+
+using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
+
+#endregion
 
 namespace Spender.Service.ScheduledJobs
 {

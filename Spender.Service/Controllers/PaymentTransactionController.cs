@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,6 +11,8 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Spender.Service.DataObjects;
 using Spender.Service.Models;
+
+#endregion
 
 namespace Spender.Service.Controllers
 {
