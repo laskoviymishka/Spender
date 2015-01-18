@@ -53,18 +53,18 @@
     <Compile Include="Business\BudgetBusiness.cs" />
     <Compile Include="Business\CategoryBusiness.cs" />
     <Compile Include="Business\ExpenseBusiness.cs" />
-    <Compile Include="Business\IBillBusiness.cs" />
-    <Compile Include="Business\IBudgetBusiness.cs" />
-    <Compile Include="Business\ICategoryBusiness.cs" />
-    <Compile Include="Business\IExpenseBusiness.cs" />
-    <Compile Include="Business\IIncomeBusiness.cs" />
+    <Compile Include="Interfaces\Business\IBillBusiness.cs" />
+    <Compile Include="Interfaces\Business\IBudgetBusiness.cs" />
+    <Compile Include="Interfaces\Business\ICategoryBusiness.cs" />
+    <Compile Include="Interfaces\Business\IExpenseBusiness.cs" />
+    <Compile Include="Interfaces\Business\IIncomeBusiness.cs" />
     <Compile Include="Business\IncomeBusiness.cs" />
-    <Compile Include="Business\IUserBusiness.cs" />
+    <Compile Include="Interfaces\Business\IUserBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
     <Compile Include="ExpenseUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EfRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spender.Common\Spender.Common.csproj">
