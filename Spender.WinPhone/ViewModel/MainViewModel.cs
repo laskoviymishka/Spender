@@ -18,7 +18,7 @@ namespace Spender.WinPhone.ViewModel
 
 		public RelayCommand LogInCommand
 		{
-			get { return new RelayCommand(() => new NavigationService().NavigateTo("/Views/LogInView.xaml")); }
+			get { return new RelayCommand(() => new NavigationService().NavigateTo("/Views/SignInView.xaml")); }
 		}
 	}
 }
