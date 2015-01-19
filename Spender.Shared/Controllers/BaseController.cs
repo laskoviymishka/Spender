@@ -22,7 +22,7 @@ namespace Spender.Shared.Controllers
 		protected BaseController()
 		{
 			MobileServiceClient = new MobileServiceClient(
-				"http://spender-mobile-service-dev.azure-mobile.net/",
+				"http://localhost:60532/",
 				"jsqhMquRTfyQecmjvGAFekRtdTfWJF46");
 			MobileServiceSyncTable = MobileServiceClient.GetSyncTable<TItem>();
 		}
