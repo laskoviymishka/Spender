@@ -1,14 +1,11 @@
 ﻿#region usings
 
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
 using Spender.Service.DataObjects;
 using Spender.Service.Models;
 

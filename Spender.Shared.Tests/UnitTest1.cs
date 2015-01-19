@@ -1,9 +1,12 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.WindowsAzure.MobileServices;
 using Spender.Shared.Contracts;
 using Spender.Shared.Controllers;
+
+#endregion
 
 namespace Spender.Shared.Tests
 {
@@ -28,7 +31,7 @@ namespace Spender.Shared.Tests
 							Name = "Shopping",
 							IsCustom = false
 						}
-					},
+					}
 				},
 				Recipient = new TransactionHolder
 				{

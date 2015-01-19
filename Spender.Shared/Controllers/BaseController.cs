@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -6,19 +8,12 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Spender.Shared.Contracts;
 
+#endregion
+
 namespace Spender.Shared.Controllers
 {
 	public class BaseController<TItem> : IBaseController<TItem> where TItem : EntityData
 	{
-		protected MobileServiceClient MobileServiceClient { get; set; }
-
-		protected IMobileServiceSyncTable<TItem> MobileServiceSyncTable { get; set; }
-
-		protected string CurrentUserId
-		{
-			get { return Guid.NewGuid().ToString(); }
-		}
-
 		protected BaseController()
 		{
 			MobileServiceClient = new MobileServiceClient(
@@ -27,24 +22,32 @@ namespace Spender.Shared.Controllers
 			MobileServiceSyncTable = MobileServiceClient.GetSyncTable<TItem>();
 		}
 
+		protected MobileServiceClient MobileServiceClient { get; set; }
+		protected IMobileServiceSyncTable<TItem> MobileServiceSyncTable { get; set; }
+
+		protected string CurrentUserId
+		{
+			get { return Guid.NewGuid().ToString(); }
+		}
+
 		public Task<IEnumerable<TItem>> QueryItem(Expression<Func<TItem, bool>> predicate)
 		{
-			return this.MobileServiceSyncTable.Where(predicate).ToEnumerableAsync();
+			return MobileServiceSyncTable.Where(predicate).ToEnumerableAsync();
 		}
 
 		public void UpdateItem(TItem item)
 		{
-			this.MobileServiceSyncTable.UpdateAsync(item);
+			MobileServiceSyncTable.UpdateAsync(item);
 		}
 
 		public virtual void InsertItem(TItem item)
 		{
-			this.MobileServiceSyncTable.InsertAsync(item);
+			MobileServiceSyncTable.InsertAsync(item);
 		}
 
 		public void DeleteItem(TItem item)
 		{
-			this.MobileServiceSyncTable.DeleteAsync(item);
+			MobileServiceSyncTable.DeleteAsync(item);
 		}
 	}
 }
