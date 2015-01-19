@@ -41,6 +41,11 @@
     <Compile Include="Contracts\Location.cs" />
     <Compile Include="Contracts\PaymentTransaction.cs" />
     <Compile Include="Contracts\TransactionHolder.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\IBaseController.cs" />
+    <Compile Include="Controllers\ITransactionHolderController.cs" />
+    <Compile Include="Controllers\PaymentTransactionController.cs" />
+    <Compile Include="Controllers\TransactionHolderController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

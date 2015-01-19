@@ -46,55 +46,6 @@ namespace Spender.Service.Controllers
 		// POST tables/PaymentTransaction
 		public async Task<IHttpActionResult> PostPaymentTransaction(PaymentTransaction item)
 		{
-			string storageAccountName;
-			string storageAccountKey;
-
-			// Try to get the Azure storage account token from app settings.  
-			if (!(Services.Settings.TryGetValue("STORAGE_ACCOUNT_NAME", out storageAccountName) |
-			      Services.Settings.TryGetValue("STORAGE_ACCOUNT_ACCESS_KEY", out storageAccountKey)))
-			{
-				Services.Log.Error("Could not retrieve storage account settings.");
-			}
-
-			// Set the URI for the Blob Storage service.
-			var blobEndpoint = new Uri(string.Format("https://{0}.blob.core.windows.net", storageAccountName));
-
-			// Create the BLOB service client.
-			var blobClient = new CloudBlobClient(blobEndpoint,
-				new StorageCredentials(storageAccountName, storageAccountKey));
-
-			if (item.ContainerName != null)
-			{
-				// Set the BLOB store container name on the item, which must be lowercase.
-				item.ContainerName = item.ContainerName.ToLower();
-
-				// Create a container, if it doesn't already exist.
-				var container = blobClient.GetContainerReference(item.ContainerName);
-				await container.CreateIfNotExistsAsync();
-
-				// Create a shared access permission policy. 
-				var containerPermissions = new BlobContainerPermissions();
-
-				// Enable anonymous read access to BLOBs.
-				containerPermissions.PublicAccess = BlobContainerPublicAccessType.Blob;
-				container.SetPermissions(containerPermissions);
-
-				// Define a policy that gives write access to the container for 5 minutes.                                   
-				var sasPolicy = new SharedAccessBlobPolicy
-				{
-					SharedAccessStartTime = DateTime.UtcNow,
-					SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(5),
-					Permissions = SharedAccessBlobPermissions.Write
-				};
-
-				// Get the SAS as a string.
-				item.SasQueryString = container.GetSharedAccessSignature(sasPolicy);
-
-				// Set the URL used to store the image.
-				item.ImageUri = string.Format("{0}{1}/{2}", blobEndpoint,
-					item.ContainerName, item.ResourceName);
-			}
-
 			var current = await InsertAsync(item);
 			return CreatedAtRoute("Tables", new {id = current.Id}, current);
 		}

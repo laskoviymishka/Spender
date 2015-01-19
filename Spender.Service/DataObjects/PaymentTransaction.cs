@@ -14,7 +14,7 @@ namespace Spender.Service.DataObjects
 		public DateTime Date { get; set; }
 		public TransactionHolder Sender { get; set; }
 		public TransactionHolder Recipient { get; set; }
-		public object ResourceName { get; set; }
+		public string ResourceName { get; set; }
 		public string ImageUri { get; set; }
 		public string SasQueryString { get; set; }
 		public string ContainerName { get; set; }
