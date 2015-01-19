@@ -1,4 +1,8 @@
+#region usings
+
 using System;
+
+#endregion
 
 namespace Spender.Shared.Contracts
 {

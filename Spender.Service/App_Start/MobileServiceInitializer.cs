@@ -1,10 +1,6 @@
 ﻿#region usings
 
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using AutoMapper;
-using Spender.Service.DataObjects;
 using Spender.Service.Models;
 
 #endregion

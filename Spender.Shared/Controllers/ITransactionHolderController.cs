@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region usings
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Spender.Shared.Contracts;
+
+#endregion
 
 namespace Spender.Shared.Controllers
 {
