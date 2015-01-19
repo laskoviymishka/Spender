@@ -1,1 +1,0 @@
-﻿var app = angular.module('SpenderApp', ['ui.bootstrap', 'ui.calendar', 'angularFileUpload']);
