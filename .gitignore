@@ -40,6 +40,8 @@ local.properties
 *.user
 *.sln.docstates
 
+/Spender.sln.ide/
+/Spender.Service/App_Data
 /packages/
 !packages/repositories.config
 
